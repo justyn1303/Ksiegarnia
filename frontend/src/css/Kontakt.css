@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cormorant+SC:wght@500;700&family=Edu+VIC+WA+NT+Beginner:wght@500&family=Fira+Sans+Condensed:wght@300&family=Hind+Siliguri:wght@600;700&family=Indie+Flower&family=Montserrat:ital,wght@0,300;1,300;1,500&family=Noto+Sans+Mono&family=Nunito:ital,wght@1,500&family=Open+Sans:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@300&family=Red+Hat+Display:ital@1&family=Roboto:ital@1&family=Saira:ital@1&family=Source+Code+Pro:ital,wght@1,500&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@500&display=swap');
+*
+.kontakt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.kontakt p {
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.kontakt h2 {
+    font-size: 50px;
+}
+
+.kontakt img {
+    height: 100px;
+    width: 150px;
+}
+.contacts {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    margin-bottom: 20px;
+}
+
+
+.contact-email {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-phone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-phone .phone {
+    height: 100px;
+    width: 100px;
+}
+/*------Responsive------*/
+/*----------------------*/

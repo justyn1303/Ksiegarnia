@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cormorant+SC:wght@500;700&family=Edu+VIC+WA+NT+Beginner:wght@500&family=Fira+Sans+Condensed:wght@300&family=Hind+Siliguri:wght@600;700&family=Indie+Flower&family=Montserrat:ital,wght@0,300;1,300;1,500&family=Noto+Sans+Mono&family=Nunito:ital,wght@1,500&family=Open+Sans:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@300&family=Red+Hat+Display:ital@1&family=Roboto:ital@1&family=Saira:ital@1&family=Source+Code+Pro:ital,wght@1,500&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@500&display=swap');
+*
+.register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register .text-register {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.register .label-register {
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.register .input-register {
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid red;
+    width: 300px;
+}
+
+.register .input-register:focus {
+    outline: none;
+}
+
+.register .button-register {
+    border: none;
+    width: 200px;
+    height: 60px;
+    background-color: red;
+    color: white;
+    border-radius: 25px;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-bottom: 60px;
+    margin-top: 40px;
+}

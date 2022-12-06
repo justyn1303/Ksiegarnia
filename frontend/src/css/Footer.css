@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cormorant+SC:wght@500;700&family=Edu+VIC+WA+NT+Beginner:wght@500&family=Fira+Sans+Condensed:wght@300&family=Hind+Siliguri:wght@600;700&family=Indie+Flower&family=Montserrat:ital,wght@0,300;1,300;1,500&family=Noto+Sans+Mono&family=Nunito:ital,wght@1,500&family=Open+Sans:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@300&family=Red+Hat+Display:ital@1&family=Roboto:ital@1&family=Saira:ital@1&family=Source+Code+Pro:ital,wght@1,500&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@500&display=swap');
+*
+.footer {
+    width: 100%;
+    height: 80vh;
+    background-color: #525151;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding-top: 100px;
+    align-items: center;
+}
+.footer-links {
+    display: flex;
+    gap: 150px;
+}
+.footer-links-urbookstore {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.footer-links-urbookstore a,
+.footer-links-urbookstore Link {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-links-urbookstore Link:hover {
+    color: red;
+}
+
+.footer-links-urbookstore span {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+.footer-links-zakupy {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.footer-links-zakupy a,
+.footer-links-zakupy Link {
+    text-decoration: none;
+    color: white;
+    transition: 0.1s all;
+}
+
+.footer-links-zakupy Link:hover {
+    color: red;
+}
+
+.footer-links-zakupy span {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+.footer-links-oferta {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.footer-links-oferta a,
+.footer-links-oferta Link {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-links-oferta Link:hover {
+    color: red;
+}
+.link:hover {
+    color: red;
+}
+.footer-links-oferta span {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+.footer-links-topbooks {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.footer-links-topbooks a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer-links-topbooks a:hover {
+    color: red;
+}
+
+.footer-links-topbooks span {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+}
+.footer-copywright {
+    margin-top: 100px;
+}
+/*------Responsive------*/
+
+@media screen and (max-width: 950px) {
+    .footer-links {
+        gap: 100px;
+    }
+}
+@media screen and (max-width: 850px) {
+    .footer-links {
+        gap: 60px;
+    }
+}
+@media screen and (max-width: 730px) {
+    .footer-links {
+        gap: 30px;
+    }
+}
+@media screen and (max-width: 650px) {
+    .footer-links {
+        gap: 15px;
+    }
+}
+@media screen and (max-width: 570px) {
+    .footer-links-oferta span,
+    .footer-links-topbooks span,
+    .footer-links-urbookstore span,
+    .footer-links-zakupy span {
+        font-size: 12px;
+    }
+    .footer-links-oferta .link,
+    .footer-links-topbooks .link,
+    .footer-links-urbookstore .link,
+    .footer-links-zakupy .link {
+        font-size: 12px;
+    }
+}
+/*---------------------*/

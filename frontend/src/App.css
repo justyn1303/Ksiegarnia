@@ -1,0 +1,574 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cormorant+SC:wght@500;700&family=Edu+VIC+WA+NT+Beginner:wght@500&family=Fira+Sans+Condensed:wght@300&family=Hind+Siliguri:wght@600;700&family=Indie+Flower&family=Montserrat:ital,wght@0,300;1,300;1,500&family=Noto+Sans+Mono&family=Nunito:ital,wght@1,500&family=Open+Sans:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@300&family=Red+Hat+Display:ital@1&family=Roboto:ital@1&family=Saira:ital@1&family=Source+Code+Pro:ital,wght@1,500&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@500&display=swap');
+* .App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.website {
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.books:focus .links .block {
+    height: 300px;
+    transition: 1s all;
+}
+
+.arrow {
+    margin-left: -50px;
+    margin-top: -5px;
+}
+
+.book-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+    flex-direction: column;
+}
+
+.book-page .book-details .book-details-pro {
+    display: flex;
+}
+
+.book-page .book-details {
+    min-height: 600px;
+    width: 50%;
+    background-color: rgb(241, 240, 240);
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    padding-top: 100px;
+}
+
+.book-page .book-details .book-details-img {
+    width: 200px;
+    height: 250px;
+    border: 2px solid black;
+}
+
+.book-page .book-details .book-details-text {
+    margin-top: 40px;
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+}
+
+.book-page .book-details .book-details-text .books {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-page .book-details .book-details-text .book-reply {
+    display: flex;
+    flex-direction: column;
+    margin-top: 52px;
+    transform: translateY(35px);
+    margin-left: -400px;
+    width: 200px;
+}
+
+.book-page .book-details .book-details-text .book-author .txt,
+.book-page .book-details .book-details-text .book-year .txt,
+.book-page .book-details .book-details-text .book-category .txt {
+    margin-left: 30px;
+}
+
+.book-page .book-details .book-price {
+    width: 300px;
+    height: 150px;
+    margin-top: 300px;
+    margin-left: 40px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    transform: translateY(-25px);
+    padding-bottom: 5px;
+}
+
+.book-page .book-details .book-price:hover {
+    background-color: rgb(241, 240, 240);
+}
+
+.book-page .book-details .book-price span {
+    margin-bottom: 20px;
+    margin-right: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.book-page .book-details .book-price button {
+    justify-items: flex-end;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    font-family: 'Montserrat', sans-serif;
+    width: 150px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: red;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.book-rating img {
+    height: 20px;
+    width: 20px;
+}
+
+.book-rating {
+    display: flex;
+    transform: translateX(-870px);
+    margin-top: 270px;
+    flex-direction: column;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-rating .stars {
+    display: flex;
+    background-color: unset;
+}
+
+.book-rating .stars img {
+    background-color: unset;
+}
+
+.book-rating .stars img:hover {
+    background-color: gold;
+}
+
+.book-opinie {
+    min-height: 200px;
+    width: 70%;
+    background-color: rgb(241, 240, 240);
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.book-page .book-opinie ul {
+    display: flex;
+    list-style: none;
+    gap: 200px;
+    height: 30px;
+}
+
+.book-page .book-opinie ul .opis {
+    width: 100%;
+    height: 100%;
+}
+
+.book-page .book-opinie ul .opinie {
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid black;
+}
+
+.book-page .book-opinie ul li {
+    padding: 5px;
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    height: 40px;
+}
+
+.book-page .book-opinie ul li:hover {
+    color: red;
+}
+
+.book-page .book-opinie ul li a {
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.book-page h4 {
+    margin-top: -60px;
+    margin-bottom: 50px;
+}
+
+.border-yes {
+    border-bottom: 2px solid red;
+}
+
+.border-none {
+    border: none;
+}
+
+.book-opinie p {
+    width: 80%;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.books-page {
+    display: flex;
+}
+
+.books-page .categories {
+    width: 20vw;
+    height: 100vh;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.books-page .categories span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    margin-top: 50px;
+}
+
+.books-page .categories ul {
+    margin: 0;
+    padding: 0;
+    margin-top: 50px;
+    list-style: none;
+}
+
+.books-page .categories ul li {
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.books-page .categories ul li .link {
+    text-decoration: none;
+    color: #282c34;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 25px;
+}
+
+.books-page .books {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 30px;
+    margin-left: 10px;
+    justify-content: center;
+}
+
+.books-page .boo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.books-page .boo span {
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+}
+
+.books-page .boo select {
+    width: 300px;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.books .book {
+    height: 35vh;
+    width: 35vh;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 50px;
+    padding-top: 30px;
+    padding-left: 45px;
+    background-color: rgba(235, 231, 231, 0.637);
+    z-index: 1;
+}
+
+.books .book:hover {
+    background-color: white;
+    border: 2px solid red;
+}
+
+.books .book-image {
+    width: 140px;
+    height: 130px;
+    border: 2px solid black;
+}
+
+.books .book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.books .book-info button {
+    width: 90px;
+    height: 20px;
+    border-radius: 25px;
+    background-color: rgb(145, 40, 136);
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    padding-left: 5px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.books .book-info .book-title {
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+.books .book-info .book-author {
+    padding-top: 10px;
+    font-size: 10px;
+}
+
+.books .book-info .book-price {
+    align-self: center;
+    padding-top: 60px;
+    font-size: 25px;
+}
+
+.books .book-info .addtobuy {
+    align-self: center;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    background-color: red;
+    color: white;
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: -20px;
+}
+
+.website {
+    position: relative;
+}
+
+.card {
+    width: 80%;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 2px;
+    padding-left: 15px;
+}
+
+.card-title {
+    font-size: 20px;
+}
+
+.book-opinie {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.book-rating span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.afterbuy {
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.displaybook {
+    text-decoration: none;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.displaybook:hover {
+    color: black;
+}
+
+.stars {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.stars h3 {
+    margin-top: 50px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.stars img {
+    height: 40px;
+    width: 40px;
+}
+
+.star-1,
+.star-2,
+.star-3,
+.star-4,
+.star-5 {
+    display: flex;
+    width: 200px;
+}
+
+.star-1 span,
+.star-2 span,
+.star-3 span,
+.star-4 span,
+.star-5 span {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 20px;
+    transform: translateY(5px);
+}
+
+.books h4 {
+    margin-top: -20px
+}
+
+@media screen and (max-width: 1370px) {
+    .book-page .book-details .book-price span {
+        font-size: 20PX;
+    }
+    .book-page .book-details .book-price button {
+        width: 100px;
+        font-size: 15px;
+        padding-bottom: 5px;
+    }
+}
+
+@media screen and (max-width: 1180px) {
+    .arrow {
+        display: none;
+    }
+    .book-page .book-details .book-price {
+        width: 20vw;
+    }
+    .book-details {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1020px) {
+    .arrow {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .book-page .book-details .book-price {
+        width: 40vw;
+    }
+    .book-page .book-opinie {
+        width: 80vw;
+        ;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .book-page .book-opinie {
+        width: 90vw;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .book-page .book-details {
+        width: 70%;
+    }
+    .book-page .book-opinie {
+        width: 100vw;
+        justify-content: center;
+    }
+    .book-page .book-opinie ul {
+        gap: 100px;
+    }
+}
+
+@media screen and (max-height: 820px) {
+    .books-page .book {
+        height: 50vh;
+    }
+}
+
+@media screen and (max-height: 720px) {
+    .books-page .book {
+        height: 50vh;
+        width: 25vw;
+    }
+}
+
+@media screen and (max-height: 620px) {
+    .books-page .book {
+        height: 60vh;
+    }
+}
+
+@media screen and (max-height: 520px) {
+    .books-page .book {
+        height: 70vh;
+    }
+}
+
+@media screen and (max-height: 420px) {
+    .books-page .book {
+        height: 80vh;
+        width: 20vw;
+    }
+}

@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cormorant+SC:wght@500;700&family=Edu+VIC+WA+NT+Beginner:wght@500&family=Fira+Sans+Condensed:wght@300&family=Hind+Siliguri:wght@600;700&family=Indie+Flower&family=Montserrat:ital,wght@0,300;1,300;1,500&family=Noto+Sans+Mono&family=Nunito:ital,wght@1,500&family=Open+Sans:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@300&family=Red+Hat+Display:ital@1&family=Roboto:ital@1&family=Saira:ital@1&family=Source+Code+Pro:ital,wght@1,500&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@500&display=swap');
+*
+.LoginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 50vh;
+}
+
+.LoginForm .text-zaloguj {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.LoginForm .label-zaloguj {
+    font-size: 25px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.LoginForm .input-zaloguj {
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 2px solid red;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    width: 300px;
+    font-weight: bold;
+}
+
+.LoginForm .input-zaloguj:focus {
+    outline: none;
+}
+
+.LoginForm .input-zaloguj::placeholder {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.LoginForm .button-zaloguj {
+    width: 150px;
+    height: 50px;
+    color: white;
+    background-color: red;
+    margin-top: 15px;
+    border-radius: 15px;
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.LoginForm .info-register {
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+}
+
+.LoginForm .button-register {
+    text-decoration: none;
+    border: 2px solid gray;
+    padding: 5px 5px 5px 5px;
+    border-radius: 15px;
+    color: black;
+    margin-top: 15px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    width: 150px;
+    font-weight: bold;
+}
+
+.LoginForm .button-register:hover {
+    background-color: black;
+    color: white;
+    border: none;
+}

@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cormorant+SC:wght@500;700&family=Edu+VIC+WA+NT+Beginner:wght@500&family=Fira+Sans+Condensed:wght@300&family=Hind+Siliguri:wght@600;700&family=Indie+Flower&family=Montserrat:ital,wght@0,300;1,300;1,500&family=Noto+Sans+Mono&family=Nunito:ital,wght@1,500&family=Open+Sans:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@300&family=Red+Hat+Display:ital@1&family=Roboto:ital@1&family=Saira:ital@1&family=Source+Code+Pro:ital,wght@1,500&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@500&display=swap');
+*
+.bestsellers {
+    position: relative;
+    padding-left: 280px;
+    padding-top: 30px;
+    padding-right: 280px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+}
+
+.bestsellers span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.bestsellers-books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.bestsellers .book {
+    height: 35vh;
+    width: 35vh;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 50px;
+    padding-top: 30px;
+    padding-left: 45px;
+    background-color: rgba(235, 231, 231, 0.637);
+    z-index: 1;
+}
+
+.bestsellers .book:hover {
+    background-color: white;
+    border: 2px solid red;
+}
+
+.bestsellers .book-image {
+    width: 140px;
+    height: 130px;
+    border: 2px solid black;
+}
+
+.bestsellers .book-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.bestsellers .book-info button {
+    width: 90px;
+    height: 20px;
+    border-radius: 25px;
+    background-color: rgb(145, 40, 136);
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    padding-left: 5px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.bestsellers .book-info .book-title {
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+.bestsellers .book-info .book-author {
+    padding-top: 10px;
+    font-size: 10px;
+}
+
+.bestsellers .book-info .book-price {
+    align-self: center;
+    padding-top: 60px;
+    font-size: 25px;
+}
+
+.bestsellers .book-info .addtobuy {
+    align-self: center;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    background-color: red;
+    color: white;
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: -20px;
+}
+/*------Responsive------*/
+@media screen and (max-width: 1900px) {
+
+    .bestsellers .book-info button {
+        margin-right: 10px;
+    }
+    .bestsellers .book {
+        width: 25w;
+    }
+}
+@media screen and (max-width: 1400px) {
+
+    .bestsellers .book-info button {
+        margin-right: 10px;
+    }
+    .bestsellers .book {
+        width: 30vw;
+    }
+}
+@media screen and (max-width: 1370px) {
+    .bestsellers {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    .bestsellers .book-info button {
+        margin-right: 10px;
+    }
+    .bestsellers .book {
+        width: 35vw;
+    }
+}
+@media screen and (max-width: 1270px) {
+
+    .bestsellers .book-info button {
+        margin-right: 10px;
+    }
+    .bestsellers .book {
+        width: 35vw;
+    }
+}
+@media screen and (max-height: 1200px) {
+
+    .bestsellers .book-info button {
+        margin-bottom: 40px;
+    }
+
+    .bestsellers .book {
+        height: 40vh;
+    }
+    .books-page .book {
+        height: 45vh;
+    }
+    .bestsellers .book-info .addtobuy {
+        margin-top: 30px;
+    }
+
+}
+@media screen and (max-width: 1180px) {
+    .bestsellers .book-info button {
+        margin-right: 10px;
+    }
+
+    .bestsellers .book {
+        width: 29vw;
+    }
+}
+@media screen and (max-width: 1020px) {
+    .bestsellers {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    .bestsellers .book-info button {
+        margin-right: 10px;
+    }
+    .bestsellers .book {
+        width: 35vw;
+    }
+}
+@media screen and (max-width: 950px) {
+
+    .bestsellers .book {
+        height: 35vh;
+        width: 40vw;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+    .bestsellers .book-image {
+        margin-left: 5px;
+        width: 150px;
+    }
+    .bestsellers .book-info {
+        margin-left: -30px;
+    }
+    .bestsellers .book-info button {
+        margin-right: 10px;
+    }
+}
+@media screen and (max-height: 820px) {
+    .bestsellers .book-info button {
+        margin-bottom: 40px;
+    }
+    .bestsellers .book {
+        height: 50vh;
+        width: 40vh;
+    }
+}
+@media screen and (max-width: 770px) {
+    .bestsellers .book {
+        height: 35vh;
+        width: 35vh;
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+@media screen and (max-height: 720px) {
+    .bestsellers .book-info button {
+        margin-bottom: 40px;
+    }
+    .bestsellers .book {
+        height: 55vh;
+        width: 30vw;
+    }
+}
+@media screen and (max-height: 620px) {
+    .bestsellers .book-info button {
+        margin-bottom: 40px;
+    }
+    .bestsellers .book {
+        height: 65vh;
+    }
+}
+@media screen and (max-height: 520px) {
+    .bestsellers .book-info button {
+        margin-bottom: 40px;
+    }
+    .bestsellers .book {
+        height: 80vh;
+    }
+}
+@media screen and (max-width: 470px) {
+    .bestsellers .book {
+        width: 60vw;
+    }
+
+}
+@media screen and (max-height: 420px) {
+    .bestsellers .book-info button {
+        margin-bottom: 40px;
+    }
+    .bestsellers .book {
+        height: 80vh;
+        width: 60vw;
+    }
+}
+
+/*----------------------*/
