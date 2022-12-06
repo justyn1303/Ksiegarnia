@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cormorant+SC:wght@500;700&family=Edu+VIC+WA+NT+Beginner:wght@500&family=Fira+Sans+Condensed:wght@300&family=Hind+Siliguri:wght@600;700&family=Indie+Flower&family=Montserrat:ital,wght@0,300;1,300;1,500&family=Noto+Sans+Mono&family=Nunito:ital,wght@1,500&family=Open+Sans:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@300&family=Red+Hat+Display:ital@1&family=Roboto:ital@1&family=Saira:ital@1&family=Source+Code+Pro:ital,wght@1,500&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@500&display=swap');
+*
+{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+:root
+{
+--grey:#525151;
+--green: #a5a75c;
+--white-gray:rgba(235, 231, 231, 0.637);
+}
+body
+{
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.adminConteiner
+{
+position: relative;
+width: 100%;
+}
+.adminNavigation
+{
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: var(--grey);
+    border-left: 10px solid var(--grey);
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.adminNavigation ul
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.adminNavigation ul li
+{
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+.adminNavigation ul li:hover
+{
+    background-color: var(--grey);
+}
+.adminNavigation ul li:nth-child(1)
+{
+    margin-bottom: 40px;
+    pointer-events: none;
+}
+.adminNavigation ul li a
+{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: white;
+}
+.adminNavigation ul li:hover a
+{
+    color: red;
+}
+.adminNavigation ul li a .adminIcon
+{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 2em;
+}
+.adminNavigation ul li a .adminIcon img
+{
+    position: relative;
+    display: block;
+    min-width: 90px;
+    height: 90px;
+    margin-top: 10%;
+    margin-left: 70%;
+}
+.adminNavigation ul li a .adminTitle
+{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+}
+.adminMain
+{
+    position:absolute;
+    width: calc(100% - 300px);
+    left:300px;
+    min-height: 100vh;
+    background: white;
+    transition: 0.5s;
+}
+.adminTopBar
+{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+.adminToggle
+{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    cursor: pointer;
+}
+.adminSearch
+{
+    position: relative;
+    width: 400px;
+    margin: 0 10px;
+}
+
+.adminSearch label
+{
+    position: relative;
+    width: 100%;
+}
+.adminSearch label input
+{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    padding: 5px 40px;
+    padding-left: 80px;
+    outline: none;
+    border: 2px solid black;
+    font-family: 'Montserrat', sans-serif;
+}
+.adminSearch img
+{
+    width: 40px;
+    height: 40px;
+    position:absolute;
+    top:0px;
+    right: 20;
+}
+.adminUser
+{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid black;
+}
+.adminUser img
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    object-fit: cover;
+}
+.cardbox
+{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 10px;
+}
+.cardbox .card
+{
+    position: relative;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.8);
+}
+.cardbox .card .numbers
+{
+    position: relative;
+    font-weight: 500;
+    font-size: 2em;
+    color: red;
+
+}
+.cardbox .card .cardName
+{
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+.cardbox .card .iconBx
+{
+    font-size: 2em;
+    
+}
+.cardbox :hover
+{
+    background-color: var(--grey);
+}
+.cardbox  :hover .numbers,
+.cardbox  :hover .cardName,
+.cardbox  :hover .iconBx
+{
+    color: white;
+}
+.details
+{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+}
+.details .orders
+{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+}
+.cardHeader
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.cardHeader h2
+{
+    font-weight: 600;
+    color: red;
+}
+.btn
+{
+    position: relative;
+    padding: 5px 10px;
+    background: var(--grey);
+    text-decoration: none;
+    color: white;
+    border-radius: 6px;
+}
+.details table
+{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px ;
+}
+.details table thead td
+{
+    font-weight: 600;
+}
+.details .orders table tr
+{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.details .orders table tr:last-child
+{
+    border-bottom: none;
+}
+.details .orders table tbody tr:hover
+{
+    background-color: var(--grey);
+    color: white;
+}
+.details .orders table tr td
+{
+    padding: 10px;
+}
+.details .orders table tr td:last-child
+{
+    text-align: end;
+}
+.details .orders table tr td:nth-child(2)
+{
+    text-align: end;
+}
+.details .orders table tr td:nth-child(3)
+{
+    text-align: center;
+}
+.statusdelivered
+{
+    padding: 2px 4px;
+    background: var(--green);
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.statuspending
+{
+    padding: 2px 4px;
+    background: rgb(0, 109, 117);
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.statusreturn
+{
+    padding: 2px 4px;
+    background: red;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.recentCustomers
+{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+}
+.recentCustomers .imgBx
+{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.recentCustomers .imgBx img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.recentCustomers table tr td
+{
+    padding: 12px 10px;
+}
+.recentCustomers table tr td h4
+{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2em;
+}
+.recentCustomers table tr td h4 span
+{
+    font-size: 14px;
+    color: var(--grey);
+}
+.recentCustomers table tr:hover
+{
+    background-color: var(--grey);
+    color: white;
+}
+.recentCustomers table tr:hover td h4 span
+{
+    color: white;
+}
+.statusonline
+{
+    padding: 2px 4px;
+    background: rgb(22, 143, 26);
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.statusoffline
+{
+    padding: 2px 4px;
+    background: rgb(63, 62, 62);
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+/*------Responsive------*/
+@media(max-width :991px){
+.adminNavigation
+{
+    left: -300px;
+}
+.adminMain
+{
+    width: 100%;
+    left: 0;
+}
+.cardbox
+{
+    grid-template-columns: repeat(2,1fr);
+}
+}
+@media(max-width :768px){
+.details
+{
+    grid-template-columns: repeat(1, 1fr);
+}
+.orders
+{
+    overflow-x: auto;
+}
+.statuspending
+{
+    white-space: nowrap;
+}
+}
+@media(max-width :480px){
+.cardbox{
+    grid-template-columns: repeat(1,1fr);
+}
+.cardHeader h2
+{
+font-size: 20px;
+}
+.adminUser
+{
+    min-width: 20px;
+}
+.adminNavigation
+{
+    width: 100%;
+    left: -500px;
+    z-index: 1000;
+}
+.adminToggle
+{
+    z-index: 10001;
+}
+}
+/*----------------------*/
