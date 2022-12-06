@@ -55,7 +55,7 @@ Użytkownicy będą mogli:
 # 2. Dokumentacja techniczna
 ## Architektura
 ![architektura.png](src_readme/architektura.png)
-&nbsp;
+
 Strona internetowa księgarni składa się z:
 - frontendu napisanego w bibliotece JavaScriptu jaką jest Reactjs
 - backendu napisanego w Nodejs
@@ -74,7 +74,7 @@ Strona internetowa księgarni składa się z:
 
 ## Struktura bazy danych
 ![baza_danych.png](src_readme/bazaDanych.jpg)
-&nbsp;
+
 Zalogowany użytkownik dokonuje zamówienia. Może on dokonać większej liczby zamówień, jednak jedno zamówienie jest przypisane dokładnie do jednego użytkownika. To samo dotyczy książki występującej w kilku zamówieniach jednak każde zamówienie jest przypisane do jednej książki. Podobnie jest z autorami: jeden autor może posiadać kilka książek jednak jedna książka posiada dokładnie jednego autora.
 
 Skróty:
