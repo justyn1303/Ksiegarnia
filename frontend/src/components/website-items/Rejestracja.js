@@ -1,9 +1,13 @@
 import Axios from "axios";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
+import Form from "react-bootstrap/Form";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
+import Button from "react-bootstrap/Button";
 import { Store } from "../Store";
+import { toast } from "react-toastify";
+import { getError } from "../utils";
 import "../../css/Rejestracja.css";
 
 const Rejestracja = () => {
@@ -54,20 +58,25 @@ const Rejestracja = () => {
         className="input-register"
         type="text"
         placeholder="Wpisz swój login"
+        onChange={(e) => setName(e.target.value)}
       ></input>
       <label className="label-register">Hasło</label>
       <input
         className="input-register"
         type="text"
         placeholder="Wpisz swoje hasło"
+        onChange={(e) => setPassword(e.target.value)}
       ></input>
       <label className="label-register">E-mail</label>
       <input
         className="input-register"
         type="email"
-        placeholder="Wpisz swój login"
+        placeholder="Wpisz swój email"
+        onChange={(e) => setEmail(e.target.value)}
       ></input>
-      <button className="button-register">Załóż konto</button>
+      <div className="mb-3">
+        <Button type="submit">Sign Up</Button>
+      </div>
       <Footer />
     </div>
   );

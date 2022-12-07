@@ -2,8 +2,8 @@ import data from "../../data";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import BookPage from "./BookPage";
-import InfoBook from "../Context/InfoBook";
 import KoszykContext from "../Context/KoszykContext";
+import InfoBook from "../Context/InfoBook";
 
 const DisplayBook = (props) => {
   const [show, setShow] = useState(false);
