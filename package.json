@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/snix422/KsiegarniaInternetowa.git"
+    "url": "git+https://github.com/justyn1303/Ksiegarnia.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/snix422/KsiegarniaInternetowa/issues"
+    "url": "https://github.com/justyn1303/Ksiegarni/issues"
   },
-  "homepage": "https://github.com/snix422/KsiegarniaInternetowa#readme"
+  "homepage": "https://github.com/justyn1303/Ksiegarni#readme"
 }
