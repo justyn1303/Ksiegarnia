@@ -5,10 +5,10 @@ import Form from "react-bootstrap/Form";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import Button from "react-bootstrap/Button";
-import { Store } from "../Store";
+import { Store } from "../../Store";
 import { toast } from "react-toastify";
-import { getError } from "../utils";
-import "../../css/Rejestracja.css";
+import { getError } from "../../utils";
+import "../../../css/Rejestracja.css";
 
 const Rejestracja = () => {
   const navigate = useNavigate();

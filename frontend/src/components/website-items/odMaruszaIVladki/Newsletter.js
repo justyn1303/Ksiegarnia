@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import "../../css/Newsletter.css";
+import "../../../css/Newsletter.css";
 
 const Newsletter = () => {
 

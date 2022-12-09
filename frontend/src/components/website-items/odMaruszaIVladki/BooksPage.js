@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import DisplayBook from "./DisplayBook"
-import data from "../../data"
+import data from "../../../data"
 import { useState } from "react"
-import "../../css/Recomends.css"
+import "../../../css/Recomends.css"
 
 const BooksPage = () => {
     const [i, setI] = useState(0);

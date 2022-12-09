@@ -1,6 +1,6 @@
 import NavBar from "./NavBar";
 import Footer from "./Footer";
-import "../../css/Onas.css"
+import "../../../css/Onas.css"
 const Onas = () => {
     return (
         <>

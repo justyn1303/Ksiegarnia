@@ -1,9 +1,9 @@
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { useContext, useState } from "react";
-import InfoBook from "../Context/InfoBook";
-import imgStar from "../../images/star.png";
-import imgGoldStar from "../../images/GoldStar.png";
+import InfoBook from "../../Context/InfoBook";
+import imgStar from "../../../images/star.png";
+import imgGoldStar from "../../../images/GoldStar.png";
 
 const BookPage = (props) => {
 

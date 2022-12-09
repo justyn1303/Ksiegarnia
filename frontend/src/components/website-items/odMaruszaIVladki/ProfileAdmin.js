@@ -1,6 +1,6 @@
-import logoImg2 from "../../images/logo2.png";
-import searchImg from "../../images/search.png";
-import profileImg from "../../images/profile.png";
+import logoImg2 from "../../../images/logo2.png";
+import searchImg from "../../../images/search.png";
+import profileImg from "../../../images/profile.png";
 import { CiHome } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
 import { CiChat1 } from "react-icons/ci";
@@ -11,7 +11,7 @@ import { CiCircleList } from "react-icons/ci";
 import { CiRead } from "react-icons/ci";
 import { CiMoneyBill } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
-import "../../css/profileAdmin.css";
+import "../../../css/profileAdmin.css";
 
 const ProfileAdmin = () => {
 

@@ -1,9 +1,9 @@
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 import { useContext, useEffect, useState } from "react";
-import KoszykContext from "../Context/KoszykContext";
+import KoszykContext from "../../Context/KoszykContext";
 import { useNavigate } from "react-router-dom";
-import "../../css/Koszyk.css";
+import "../../../css/Koszyk.css";
 
 const Koszyk = () => {
   const [isEmptyBin, setisEmptyBin] = useState(false);

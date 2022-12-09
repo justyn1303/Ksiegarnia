@@ -1,5 +1,5 @@
 import { useState } from "react"
-import "../../css/Popup.css"
+import "../../../css/Popup.css"
 
 const PopUp = () => {
     const [showPopUp, setShowPopUp] = useState("popup");
