@@ -58,7 +58,6 @@ productRouter.put(
   })
 );
 
-
 productRouter.delete(
   '/:id',
   isAuth,
@@ -73,7 +72,6 @@ productRouter.delete(
     }
   })
 );
-
 
 const PAGE_SIZE = 3;
 
@@ -193,6 +191,7 @@ productRouter.get("/slug/:slug", async (req, res) => {
     res.status(404).send({ message: "Product Not Found" });
   }
 });
+
 productRouter.get("/:id", async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {

@@ -27,12 +27,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/upload', uploadRouter);
-app.use('/api/orders', orderRouter);
-
 app.use("/api/seed", seedRouter);
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
-
+app.use('/api/orders', orderRouter);
 
 
 const __dirname = path.resolve();
