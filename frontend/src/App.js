@@ -1,51 +1,100 @@
-import "./App.css";
-import Layout from "./components/odMaruszaIVladki/Layout";
-import Onas from "./components/odMaruszaIVladki/Onas";
-import Kontakt from "./components/odMaruszaIVladki/Kontakt";
-import SigninScreen from "./screens/SignupScreen";
-import BestsellersOtherPage from "./components/odMaruszaIVladki/BestsellersOtherPage";
-import Rejestracja from "./screens/SignupScreen";
-import Zapowiedzi from "./components/odMaruszaIVladki/Zapowiedzi";
-import Promocje from "./components/odMaruszaIVladki/Promocje";
-import Nowosci from "./components/odMaruszaIVladki/Nowosci";
-import BookPage from "./components/odMaruszaIVladki/BookPage";
-import BooksPage from "./components/odMaruszaIVladki/BooksPage";
-import ScrollToTop from "./components/odMaruszaIVladki/ScrollToTop";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { isCompositeComponentWithType } from "react-dom/test-utils";
-import Profile from "./components/odMaruszaIVladki/Profile";
-import ProfileAdmin from "./components/odMaruszaIVladki/ProfileAdmin";
-import Koszyk from "./components/odMaruszaIVladki/Koszyk";
-import AfterBuy from "./components/odMaruszaIVladki/AfterBuy";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen";
+import ProductScreen from "./screens/ProductScreen";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import { LinkContainer } from "react-router-bootstrap";
+import Badge from "react-bootstrap/Badge";
+import Nav from "react-bootstrap/Nav";
+import { useContext } from "react";
+import { Store } from "./Store";
+import CartScreen from "./screens/CartScreen";
+import SigninScreen from "./screens/SigninScreen";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import ShippingAddressScreen from "./screens/ShippingAddressScreen";
+import SignupScreen from "./screens/SignupScreen";
+import PaymentMethodScreen from "./screens/PaymentMethodScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 
 function App() {
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart, userInfo } = state;
+
+  const signoutHandler = () => {
+    ctxDispatch({ type: "USER_SIGNOUT" });
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
+  };
   return (
     <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route exact path="/" element={<Layout />}></Route>
-        <Route exact path="/onas" element={<Onas />}></Route>
-        <Route exact path="/kontakt" element={<Kontakt />}></Route>
-        <Route exact path="/ksiazki" element={<Layout />}></Route>
-        <Route exact path="/signin" element={<SigninScreen />}></Route>
-        <Route
-          exact
-          path="/bestsellers"
-          element={<BestsellersOtherPage />}
-        ></Route>
-        <Route exact path="/singup" element={<Rejestracja />}></Route>
-        <Route exact path="/zapowiedzi" element={<Zapowiedzi />}></Route>
-        <Route exact path="/promocje" element={<Promocje />}></Route>
-        <Route exact path="/nowosci" element={<Nowosci />}></Route>
-        <Route exact path="/book" element={<BookPage />}></Route>
-        <Route exact path="/books" element={<BooksPage />}></Route>
-        <Route exact path="/profile" element={<Profile />}></Route>
-        <Route exact path="/profileAdmin" element={<ProfileAdmin />}></Route>
-        <Route exact path="/koszyk" element={<Koszyk />}></Route>
-        <Route exact path="/transakcja" element={<AfterBuy />}></Route>
-      </Routes>
+      <div className="d-flex flex-column site-container">
+        <ToastContainer position="bottom-center" limit={1} />
+        <header>
+          <Navbar bg="dark" variant="dark">
+            <Container>
+              <LinkContainer to="/">
+                <Navbar.Brand>amazona</Navbar.Brand>
+              </LinkContainer>
+              <Nav className="me-auto">
+                <Link to="/cart" className="nav-link">
+                  Cart
+                  {cart.cartItems.length > 0 && (
+                    <Badge pill bg="danger">
+                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                    </Badge>
+                  )}
+                </Link>
+                {userInfo ? (
+                  <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>User Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/orderhistory">
+                      <NavDropdown.Item>Order History</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Divider />
+                    <Link
+                      className="dropdown-item"
+                      to="#signout"
+                      onClick={signoutHandler}
+                    >
+                      Sign Out
+                    </Link>
+                  </NavDropdown>
+                ) : (
+                  <Link className="nav-link" to="/signin">
+                    Sign In
+                  </Link>
+                )}
+              </Nav>
+            </Container>
+          </Navbar>
+        </header>
+        <main>
+          <Container className="mt-3">
+            <Routes>
+              <Route path="/product/:slug" element={<ProductScreen />} />
+              <Route path="/cart" element={<CartScreen />} />
+              <Route path="/signin" element={<SigninScreen />} />
+              <Route path="/signup" element={<SignupScreen />} />
+              <Route
+                path="/shipping"
+                element={<ShippingAddressScreen />}
+              ></Route>
+              <Route path="/payment" element={<PaymentMethodScreen />}></Route>
+              <Route path="/placeorder" element={<PlaceOrderScreen />} />
+              <Route path="/" element={<HomeScreen />} />
+            </Routes>
+          </Container>
+        </main>
+        <footer>
+          <div className="text-center">All rights reserved</div>
+        </footer>
+      </div>
     </BrowserRouter>
   );
 }
-
 export default App;

@@ -8,7 +8,6 @@ import { useContext, useEffect, useState } from "react";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
-import FormLabel from "react-bootstrap/esm/FormLabel";
 
 export default function SigninScreen() {
   const navigate = useNavigate();
@@ -45,12 +44,12 @@ export default function SigninScreen() {
   return (
     <Container className="small-container">
       <Helmet>
-        <title>Zaloguj się</title>
+        <title>Sign In</title>
       </Helmet>
-      <h1 className="my-3">Zaloguj się</h1>
+      <h1 className="my-3">Sign In</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="email">
-          <FormLabel>Email</FormLabel>
+          <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
             required
@@ -58,7 +57,7 @@ export default function SigninScreen() {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
-          <Form.Label>Hasło</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
             required
@@ -66,11 +65,11 @@ export default function SigninScreen() {
           />
         </Form.Group>
         <div className="mb-3">
-          <Button type="submit">Zaloguj się</Button>
+          <Button type="submit">Sign In</Button>
         </div>
         <div className="mb-3">
-          Nowy klient?{" "}
-          <Link to={`/signup?redirect=${redirect}`}>Załóż konto</Link>
+          New customer?{" "}
+          <Link to={`/signup?redirect=${redirect}`}>Create your account</Link>
         </div>
       </Form>
     </Container>
