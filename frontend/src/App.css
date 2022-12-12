@@ -1,44 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cormorant+SC:wght@500;700&family=Edu+VIC+WA+NT+Beginner:wght@500&family=Fira+Sans+Condensed:wght@300&family=Hind+Siliguri:wght@600;700&family=Indie+Flower&family=Montserrat:ital,wght@0,300;1,300;1,500&family=Noto+Sans+Mono&family=Nunito:ital,wght@1,500&family=Open+Sans:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@300&family=Red+Hat+Display:ital@1&family=Roboto:ital@1&family=Saira:ital@1&family=Source+Code+Pro:ital,wght@1,500&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Cormorant+SC:wght@500;700&family=Edu+VIC+WA+NT+Beginner:wght@500&family=Fira+Sans+Condensed:wght@300&family=Hind+Siliguri:wght@600;700&family=Indie+Flower&family=Montserrat:ital,wght@0,300;1,300;1,500&family=Noto+Sans+Mono&family=Nunito:ital,wght@1,500&family=Open+Sans:ital,wght@0,400;0,600;1,500&family=Quicksand:wght@300&family=Red+Hat+Display:ital@1&family=Roboto:ital@1&family=Saira:ital@1&family=Source+Code+Pro:ital,wght@1,500&family=Source+Sans+Pro:wght@600&family=Ubuntu:wght@500&display=swap");
 * .App {
-    text-align: center;
+  text-align: center;
 }
 
 .App-logo {
-    height: 40vmin;
-    pointer-events: none;
+  height: 40vmin;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 .App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 .App-link {
-    color: #61dafb;
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.website {
+/* .website {
     width: 100vw;
     min-height: 100vh;
 }
@@ -571,4 +571,4 @@
         height: 80vh;
         width: 20vw;
     }
-}
+} */
