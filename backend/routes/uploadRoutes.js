@@ -1,9 +1,11 @@
 import express from 'express';
+import * as dotenv from "dotenv";
 import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 import streamifier from 'streamifier';
 import { isAdmin, isAuth } from '../utils.js';
 
+dotenv.config({path:'../.env'});
 const upload = multer();
 
 const uploadRouter = express.Router();
