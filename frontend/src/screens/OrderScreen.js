@@ -103,7 +103,7 @@ export default function OrderScreen() {
           }
         );
         dispatch({ type: "PAY_SUCCESS", payload: data });
-        toast.success("Order is paid");
+        toast.success("Opłacono zamówienie");
       } catch (err) {
         dispatch({ type: "PAY_FAIL", payload: getError(err) });
         toast.error(getError(err));
@@ -180,7 +180,7 @@ export default function OrderScreen() {
         }
       );
       dispatch({ type: "DELIVER_SUCCESS", payload: data });
-      toast.success("Order is delivered");
+      toast.success("Zamówienie dostarczono");
     } catch (err) {
       toast.error(getError(err));
       dispatch({ type: "DELIVER_FAIL" });
@@ -194,17 +194,17 @@ export default function OrderScreen() {
   ) : (
     <div>
       <Helmet>
-        <title>Order {orderId}</title>
+        <title>Zamówienie {orderId}</title>
       </Helmet>
-      <h1 className="my-3">Order {orderId}</h1>
+      <h1 className="my-3">Zamówienie {orderId}</h1>
       <Row>
         <Col md={8}>
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Shipping</Card.Title>
+              <Card.Title>Zamówienie</Card.Title>
               <Card.Text>
-                <strong>Name:</strong> {order.shippingAddress.fullName} <br />
-                <strong>Address: </strong> {order.shippingAddress.address},
+                <strong>Imię i nazwisko:</strong> {order.shippingAddress.fullName} <br />
+                <strong>Adres: </strong> {order.shippingAddress.address},
                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
                 ,{order.shippingAddress.country}
               </Card.Text>

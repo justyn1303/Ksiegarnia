@@ -104,10 +104,10 @@ export default function UserListScreen() {
           <thead>
             <tr>
               <th>ID</th>
-              <th>IMIE</th>
+              <th>IMIĘ</th>
               <th>EMAIL</th>
               <th>IS ADMIN</th>
-              <th>ACTIONS</th>
+              <th>AKCJE</th>
             </tr>
           </thead>
           <tbody>
