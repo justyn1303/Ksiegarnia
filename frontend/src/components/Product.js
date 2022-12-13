@@ -19,7 +19,7 @@ function Product(props) {
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${item._id}`);
     if (data.countInStock < quantity) {
-      window.alert("Sorry. Product is out of stock");
+      window.alert("Przepraszamy, produkt nie znajduje się w magazynie");
       return;
     }
     ctxDispatch({
@@ -44,7 +44,7 @@ function Product(props) {
             Out of stock
           </Button>
         ) : (
-          <Button onClick={() => addToCartHandler(product)}>Add to cart</Button>
+          <Button onClick={() => addToCartHandler(product)}>Kup</Button>
         )}
       </Card.Body>
     </Card>
