@@ -82,7 +82,7 @@ export default function UserEditScreen() {
       dispatch({
         type: "UPDATE_SUCCESS",
       });
-      toast.success("User updated successfully");
+      toast.success("Pomyślnie zaktualizowano użytkownika");
       navigate("/admin/users");
     } catch (error) {
       toast.error(getError(error));
@@ -103,7 +103,7 @@ export default function UserEditScreen() {
       ) : (
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="name">
-            <Form.Label>Name</Form.Label>
+            <Form.Label>Imię</Form.Label>
             <Form.Control
               value={name}
               onChange={(e) => setName(e.target.value)}

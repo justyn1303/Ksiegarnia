@@ -87,7 +87,7 @@ export default function PlaceOrderScreen() {
       <Helmet>
         <title>Podgląd Zamówienia</title>
       </Helmet>
-      <h1 className="my-3">Preview Order</h1>
+      <h1 className="my-3">Podgląd Zamówienia</h1>
       <Row>
         <Col md={8}>
           <Card className="mb-3">
@@ -109,7 +109,7 @@ export default function PlaceOrderScreen() {
               <Card.Text>
                 <strong>Metoda:</strong> {cart.paymentMethod}
               </Card.Text>
-              <Link to="/payment">Edit</Link>
+              <Link to="/payment">Edytuj</Link>
             </Card.Body>
           </Card>
 
@@ -126,17 +126,17 @@ export default function PlaceOrderScreen() {
                           alt={item.name}
                           className="img-fluid rounded img-thumbnail"
                         ></img>{" "}
-                        <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                        <Link to={`/product/${item.slug}`}>{item.title}</Link>
                       </Col>
                       <Col md={3}>
                         <span>{item.quantity}</span>
                       </Col>
-                      <Col md={3}>${item.price}</Col>
+                      <Col md={3}>PLN{item.price}</Col>
                     </Row>
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-              <Link to="/cart">Edit</Link>
+              <Link to="/cart">Edytuj</Link>
             </Card.Body>
           </Card>
         </Col>
@@ -148,19 +148,19 @@ export default function PlaceOrderScreen() {
                 <ListGroup.Item>
                   <Row>
                     <Col>Przedmioty</Col>
-                    <Col>${cart.itemsPrice.toFixed(2)}</Col>
+                    <Col>PLN{cart.itemsPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Wysyłka</Col>
-                    <Col>${cart.shippingPrice.toFixed(2)}</Col>
+                    <Col>PLN{cart.shippingPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Podatek</Col>
-                    <Col>${cart.taxPrice.toFixed(2)}</Col>
+                    <Col>PLN{cart.taxPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -169,7 +169,7 @@ export default function PlaceOrderScreen() {
                       <strong>Podsumowanie Zamówienia</strong>
                     </Col>
                     <Col>
-                      <strong>${cart.totalPrice.toFixed(2)}</strong>
+                      <strong>PLN{cart.totalPrice.toFixed(2)}</strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>
