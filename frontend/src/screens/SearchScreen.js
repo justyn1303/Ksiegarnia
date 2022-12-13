@@ -36,15 +36,15 @@ const reducer = (state, action) => {
 
 const prices = [
   {
-    name: "$1 to $50",
+    name: "1zł to 50zł",
     value: "1-50",
   },
   {
-    name: "$51 to $200",
+    name: "51zł to 200zł",
     value: "51-200",
   },
   {
-    name: "$201 to $1000",
+    name: "201zł to 1000zł",
     value: "201-1000",
   },
 ];
@@ -130,11 +130,11 @@ export default function SearchScreen() {
   return (
     <div>
       <Helmet>
-        <title>Search Products</title>
+        <title>Wyszukaj produkt</title>
       </Helmet>
       <Row>
         <Col md={3}>
-          <h3>Department</h3>
+          <h3>Dział</h3>
           <div>
             <ul>
               <li>
@@ -142,7 +142,7 @@ export default function SearchScreen() {
                   className={"all" === category ? "text-bold" : ""}
                   to={getFilterUrl({ category: "all" })}
                 >
-                  Any
+                  Wszystko
                 </Link>
               </li>
               {categories.map((c) => (
@@ -158,14 +158,14 @@ export default function SearchScreen() {
             </ul>
           </div>
           <div>
-            <h3>Price</h3>
+            <h3>Cena</h3>
             <ul>
               <li>
                 <Link
                   className={"all" === price ? "text-bold" : ""}
                   to={getFilterUrl({ price: "all" })}
                 >
-                  Any
+                  Wszystko
                 </Link>
               </li>
               {prices.map((p) => (
@@ -181,7 +181,7 @@ export default function SearchScreen() {
             </ul>
           </div>
           <div>
-            <h3>Avg. Customer Review</h3>
+            <h3>Średnia opinia użytkowników</h3>
             <ul>
               {ratings.map((r) => (
                 <li key={r.name}>
@@ -233,7 +233,7 @@ export default function SearchScreen() {
                   </div>
                 </Col>
                 <Col className="text-end">
-                  Sort by{" "}
+                  Sortuj{" "}
                   <select
                     value={order}
                     onChange={(e) => {
@@ -248,7 +248,7 @@ export default function SearchScreen() {
                 </Col>
               </Row>
               {products.length === 0 && (
-                <MessageBox>No Product Found</MessageBox>
+                <MessageBox>Nie Znaleziono Produktu</MessageBox>
               )}
 
               <Row>
