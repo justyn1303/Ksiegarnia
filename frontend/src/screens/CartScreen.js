@@ -39,14 +39,14 @@ export default function CartScreen() {
   return (
     <div>
       <Helmet>
-        <title>Shopping Cart</title>
+        <title>Koszyk</title>
       </Helmet>
-      <h1>Shopping Cart</h1>
+      <h1>Koszyk</h1>
       <Row>
         <Col md={8}>
           {cartItems.length === 0 ? (
             <MessageBox>
-              Cart is empty. <Link to="/">Idź na zakupy!</Link>
+              Koszyk jest pusty. <Link to="/">Idź na zakupy!</Link>
             </MessageBox>
           ) : (
             <ListGroup>
@@ -103,9 +103,9 @@ export default function CartScreen() {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>
-                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
-                    items) : $
-                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                    Razem ({cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
+                    przedmiotów) :{" "}
+                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}zł
                   </h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -116,7 +116,7 @@ export default function CartScreen() {
                       onClick={checkoutHandler}
                       disabled={cartItems.length === 0}
                     >
-                      Proceed to Checkout
+                      Przejdź do kasy
                     </Button>
                   </div>
                 </ListGroup.Item>

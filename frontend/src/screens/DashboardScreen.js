@@ -52,7 +52,7 @@ export default function DashboardScreen() {
 
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1>Panel Admina</h1>
       {loading ? (
         <LoadingBox />
       ) : error ? (
@@ -68,7 +68,7 @@ export default function DashboardScreen() {
                       ? summary.users[0].numUsers
                       : 0}
                   </Card.Title>
-                  <Card.Text> Users</Card.Text>
+                  <Card.Text>Użytkownicy</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -80,7 +80,7 @@ export default function DashboardScreen() {
                       ? summary.orders[0].numOrders
                       : 0}
                   </Card.Title>
-                  <Card.Text> Orders</Card.Text>
+                  <Card.Text>Ilość zamówień</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
@@ -93,21 +93,21 @@ export default function DashboardScreen() {
                       ? summary.orders[0].totalSales.toFixed(2)
                       : 0}
                   </Card.Title>
-                  <Card.Text> Orders</Card.Text>
+                  <Card.Text>Suma z zamówień</Card.Text>
                 </Card.Body>
               </Card>
             </Col>
           </Row>
           <div className="my-3">
-            <h2>Sales</h2>
+            <h2>Sprzedaż</h2>
             {summary.dailyOrders.length === 0 ? (
-              <MessageBox>No Sale</MessageBox>
+              <MessageBox>Nic nie kupiono</MessageBox>
             ) : (
               <Chart
                 width="100%"
                 height="400px"
                 chartType="AreaChart"
-                loader={<div>Loading Chart...</div>}
+                loader={<div>Ładowanie wykresu...</div>}
                 data={[
                   ["Date", "Sales"],
                   ...summary.dailyOrders.map((x) => [x._id, x.sales]),
@@ -116,15 +116,15 @@ export default function DashboardScreen() {
             )}
           </div>
           <div className="my-3">
-            <h2>Categories</h2>
+            <h2>Kategorie</h2>
             {summary.productCategories.length === 0 ? (
-              <MessageBox>No Category</MessageBox>
+              <MessageBox>Bez kategorii</MessageBox>
             ) : (
               <Chart
                 width="100%"
                 height="400px"
                 chartType="PieChart"
-                loader={<div>Loading Chart...</div>}
+                loader={<div>Ładowanie wykresu...</div>}
                 data={[
                   ["Category", "Products"],
                   ...summary.productCategories.map((x) => [x._id, x.count]),

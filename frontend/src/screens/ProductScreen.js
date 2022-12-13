@@ -56,7 +56,7 @@ function ProductScreen() {
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
-      window.alert("Sorry. Product is out of stock");
+      window.alert("Przepraszamy, produkt nie znajduje się w magazynie");
       return;
     }
     ctxDispatch({
@@ -96,7 +96,7 @@ function ProductScreen() {
             </ListGroup.Item>
             <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
             <ListGroup.Item>
-              Description:
+              Opis:
               <p>{product.description}</p>
             </ListGroup.Item>
           </ListGroup>
@@ -107,7 +107,7 @@ function ProductScreen() {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
-                    <Col>Price:</Col>
+                    <Col>Cena:</Col>
                     <Col>${product.price}</Col>
                   </Row>
                 </ListGroup.Item>
@@ -116,9 +116,9 @@ function ProductScreen() {
                     <Col>Status:</Col>
                     <Col>
                       {product.countInStock > 0 ? (
-                        <Badge bg="success">In Stock</Badge>
+                        <Badge bg="success">W MAgazynie</Badge>
                       ) : (
-                        <Badge bg="danger">Unavailable</Badge>
+                        <Badge bg="danger">Niedostępne</Badge>
                       )}
                     </Col>
                   </Row>

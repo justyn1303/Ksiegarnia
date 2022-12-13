@@ -3,14 +3,15 @@ import { createContext, useReducer } from "react";
 export const Store = createContext();
 
 const initialState = {
+  shippingAddress: localStorage.getItem("shippingAddress")
+    ? JSON.parse(localStorage.getItem("shippingAddress"))
+    : {},
+
   userInfo: localStorage.getItem("userInfo")
-  ? JSON.parse(localStorage.getItem("userInfo"))
-  : null,
+    ? JSON.parse(localStorage.getItem("userInfo"))
+    : null,
 
   cart: {
-    shippingAddress: localStorage.getItem("shippingAddress")
-    ? JSON.parse(localStorage.getItem("shippingAddress"))
-    : {location: {}},
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
