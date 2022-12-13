@@ -84,9 +84,9 @@ function ProductScreen() {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
-                <title>{product.name}</title>
+                <title>{product.title}</title>
               </Helmet>
-              <h1>{product.name}</h1>
+              <h1>{product.title}</h1>
             </ListGroup.Item>
             <ListGroup.Item>
               <Rating
@@ -94,7 +94,7 @@ function ProductScreen() {
                 numReviews={product.numReviews}
               ></Rating>
             </ListGroup.Item>
-            <ListGroup.Item>Cena : {product.price}zł</ListGroup.Item>
+            <ListGroup.Item>Cena : {product.price}PLN</ListGroup.Item>
             <ListGroup.Item>
               Opis:
               <p>{product.description}</p>
@@ -108,7 +108,7 @@ function ProductScreen() {
                 <ListGroup.Item>
                   <Row>
                     <Col>Cena:</Col>
-                    <Col>${product.price}</Col>
+                    <Col>PLN{product.price}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>

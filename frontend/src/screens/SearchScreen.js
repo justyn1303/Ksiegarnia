@@ -51,22 +51,22 @@ const prices = [
 
 export const ratings = [
   {
-    name: "4stars & up",
+    name: "4gwiazdki i wyżej",
     rating: 4,
   },
 
   {
-    name: "3stars & up",
+    name: "3gwiazdki i wyżej",
     rating: 3,
   },
 
   {
-    name: "2stars & up",
+    name: "2gwiazdki i wyżej",
     rating: 2,
   },
 
   {
-    name: "1stars & up",
+    name: "1gwiazdka i wyżej",
     rating: 1,
   },
 ];
@@ -240,10 +240,10 @@ export default function SearchScreen() {
                       navigate(getFilterUrl({ order: e.target.value }));
                     }}
                   >
-                    <option value="newest">Newest Arrivals</option>
-                    <option value="lowest">Price: Low to High</option>
-                    <option value="highest">Price: High to Low</option>
-                    <option value="toprated">Avg. Customer Reviews</option>
+                    <option value="newest">Najnowsze</option>
+                    <option value="lowest">Cena: Od najtańszych</option>
+                    <option value="highest">Cena: Od najdroższych</option>
+                    <option value="toprated">Średnie opinie użytkowników</option>
                   </select>
                 </Col>
               </Row>
