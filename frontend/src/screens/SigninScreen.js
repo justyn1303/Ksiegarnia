@@ -46,7 +46,7 @@ export default function SigninScreen() {
       <Helmet>
         <title>Zaloguj się</title>
       </Helmet>
-      <h1 className="my-3">Sign In</h1>
+      <h1 className="my-3">Zaloguj się</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
@@ -65,7 +65,7 @@ export default function SigninScreen() {
           />
         </Form.Group>
         <div className="mb-3">
-          <Button type="submit">Sign In</Button>
+          <Button type="submit">Zaloguj się</Button>
         </div>
         <div className="mb-3">
           Nowy klient?{" "}

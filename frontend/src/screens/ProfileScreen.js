@@ -69,7 +69,7 @@ export default function ProfileScreen() {
       <h1 className="my-3">Profil Użytkownika</h1>
       <form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Nazwa użytkownika</Form.Label>
           <Form.Control
             value={name}
             onChange={(e) => setName(e.target.value)}

@@ -96,7 +96,7 @@ export default function ProductListScreen() {
   }, [page, userInfo, successDelete]);
 
   const createHandler = async () => {
-    if (window.confirm("Are you sure to create?")) {
+    if (window.confirm("Czy jesteś pewien, że chcesz utworzyć nowy produkt?")) {
       try {
         dispatch({ type: "CREATE_REQUEST" });
         const { data } = await axios.post(
@@ -106,7 +106,7 @@ export default function ProductListScreen() {
             headers: { Authorization: `Bearer ${userInfo.token}` },
           }
         );
-        toast.success("product created successfully");
+        toast.success("produkt utworzono");
         dispatch({ type: "CREATE_SUCCESS" });
         navigate(`/admin/product/${data.product._id}`);
       } catch (err) {
@@ -119,12 +119,12 @@ export default function ProductListScreen() {
   };
 
   const deleteHandler = async (product) => {
-    if (window.confirm("Are you sure to delete?")) {
+    if (window.confirm("Czy jesteś pewien, że chcesz usunąć ten produkt?")) {
       try {
         await axios.delete(`/api/products/${product._id}`, {
           headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-        toast.success("product deleted successfully");
+        toast.success("produkt usunięto");
         dispatch({ type: "DELETE_SUCCESS" });
       } catch (err) {
         toast.error(getError(error));
@@ -174,7 +174,7 @@ export default function ProductListScreen() {
               {products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
-                  <td>{product.name}</td>
+                  <td>{product.title}</td>
                   <td>{product.price}</td>
                   <td>{product.category}</td>
                   <td>{product.brand}</td>

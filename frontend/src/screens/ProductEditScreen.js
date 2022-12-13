@@ -59,7 +59,7 @@ export default function ProductEditScreen() {
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState("");
-  const [brand, setBrand] = useState("");
+  const [year, setYear] = useState("");
   const [description, setDescription] = useState("");
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function ProductEditScreen() {
         setImage(data.image);
         setCategory(data.category);
         setCountInStock(data.countInStock);
-        setBrand(data.brand);
+        setYear(data.year);
         setDescription(data.description);
         dispatch({ type: "FETCH_SUCCESS" });
       } catch (err) {
@@ -99,7 +99,7 @@ export default function ProductEditScreen() {
           price,
           image,
           category,
-          brand,
+          year,
           countInStock,
           description,
         },
@@ -110,7 +110,7 @@ export default function ProductEditScreen() {
       dispatch({
         type: "UPDATE_SUCCESS",
       });
-      toast.success("Product updated successfully");
+      toast.success("Pomyślnie zaktualizowano produkt");
       navigate("/admin/products");
     } catch (err) {
       toast.error(getError(err));
@@ -131,7 +131,7 @@ export default function ProductEditScreen() {
       });
       dispatch({ type: "UPLOAD_SUCCESS" });
 
-      toast.success("Image uploaded successfully");
+      toast.success("Obraz przesłąny pomyślnie");
       setImage(data.secure_url);
     } catch (err) {
       toast.error(getError(err));
@@ -198,10 +198,10 @@ export default function ProductEditScreen() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="brand">
-            <Form.Label>Marka</Form.Label>
+            <Form.Label>Rok wydania</Form.Label>
             <Form.Control
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
               required
             />
           </Form.Group>
