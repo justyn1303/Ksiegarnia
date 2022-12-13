@@ -167,7 +167,7 @@ export default function ProductListScreen() {
                 <th>CENA</th>
                 <th>KATEGORIA</th>
                 <th>MARKA</th>
-                <th>CZYNNOŚĆ</th>
+                <th>AKCJA</th>
               </tr>
             </thead>
             <tbody>
@@ -184,7 +184,7 @@ export default function ProductListScreen() {
                       variant="light"
                       onClick={() => navigate(`/admin/product/${product._id}`)}
                     >
-                      edytuj
+                      Edytuj
                     </Button>
                     &nbsp;
                     <Button

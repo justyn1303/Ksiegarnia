@@ -36,37 +36,37 @@ const reducer = (state, action) => {
 
 const prices = [
   {
-    name: "1zł to 50zł",
+    name: "1zł - 50zł",
     value: "1-50",
   },
   {
-    name: "51zł to 200zł",
+    name: "51zł - 200zł",
     value: "51-200",
   },
   {
-    name: "201zł to 1000zł",
+    name: "201zł - 1000zł",
     value: "201-1000",
   },
 ];
 
 export const ratings = [
   {
-    name: "4gwiazdki i wyżej",
+    name: "4 gwiazdki i wyżej",
     rating: 4,
   },
 
   {
-    name: "3gwiazdki i wyżej",
+    name: "3 gwiazdki i wyżej",
     rating: 3,
   },
 
   {
-    name: "2gwiazdki i wyżej",
+    name: "2 gwiazdki i wyżej",
     rating: 2,
   },
 
   {
-    name: "1gwiazdka i wyżej",
+    name: "1 gwiazdka i wyżej",
     rating: 1,
   },
 ];
@@ -214,7 +214,7 @@ export default function SearchScreen() {
               <Row className="justify-content-between mb-3">
                 <Col md={6}>
                   <div>
-                    {countProducts === 0 ? "No" : countProducts} Results
+                    {countProducts === 0 ? "No" : countProducts} wynik
                     {query !== "all" && " : " + query}
                     {category !== "all" && " : " + category}
                     {price !== "all" && " : Price " + price}
@@ -243,7 +243,9 @@ export default function SearchScreen() {
                     <option value="newest">Najnowsze</option>
                     <option value="lowest">Cena: Od najtańszych</option>
                     <option value="highest">Cena: Od najdroższych</option>
-                    <option value="toprated">Średnie opinie użytkowników</option>
+                    <option value="toprated">
+                      Średnie opinie użytkowników
+                    </option>
                   </select>
                 </Col>
               </Row>

@@ -108,7 +108,7 @@ export default function OrderListScreen() {
               <th>TOTAL</th>
               <th>PŁATNOŚĆ</th>
               <th>DOSTARCZONY</th>
-              <th>CZYNNOŚĆ</th>
+              <th>AKCJA</th>
             </tr>
           </thead>
           <tbody>
@@ -118,12 +118,12 @@ export default function OrderListScreen() {
                 <td>{order.user ? order.user.name : "USUNIĘTO UŻYTKOWNIKA"}</td>
                 <td>{order.createdAt.substring(0, 10)}</td>
                 <td>{order.totalPrice.toFixed(2)}</td>
-                <td>{order.isPaid ? order.paidAt.substring(0, 10) : "No"}</td>
+                <td>{order.isPaid ? order.paidAt.substring(0, 10) : "Nie"}</td>
 
                 <td>
                   {order.isDelivered
                     ? order.deliveredAt.substring(0, 10)
-                    : "No"}
+                    : "Nie"}
                 </td>
                 <td>
                   <Button
