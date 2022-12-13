@@ -52,7 +52,7 @@ export default function ProfileScreen() {
       });
       ctxDispatch({ type: "USER_SIGNIN", payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
-      toast.success("User updated successfully");
+      toast.success("Pomyślnie zaktualizowano użytkownika");
     } catch (err) {
       dispatch({
         type: "FETCH_FAIL",
@@ -69,7 +69,7 @@ export default function ProfileScreen() {
       <h1 className="my-3">Profil Użytkownika</h1>
       <form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="name">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>Nazwa użytkownika</Form.Label>
           <Form.Control
             value={name}
             onChange={(e) => setName(e.target.value)}
