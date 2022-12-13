@@ -82,7 +82,7 @@ export default function CartScreen() {
                         <i className="fas fa-plus-circle"></i>
                       </Button>
                     </Col>
-                    <Col md={3}>${item.price}</Col>
+                    <Col md={3}>PLN{item.price}</Col>
                     <Col md={2}>
                       <Button
                         onClick={() => removeItemHandler(item)}
@@ -105,7 +105,7 @@ export default function CartScreen() {
                   <h3>
                     Razem ({cartItems.reduce((a, c) => a + c.quantity, 0)}{" "}
                     przedmiotów) :{" "}
-                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}zł
+                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}PLN
                   </h3>
                 </ListGroup.Item>
                 <ListGroup.Item>

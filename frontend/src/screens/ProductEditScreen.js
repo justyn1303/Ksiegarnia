@@ -131,7 +131,7 @@ export default function ProductEditScreen() {
       });
       dispatch({ type: "UPLOAD_SUCCESS" });
 
-      toast.success("Obraz przesłąny pomyślnie");
+      toast.success("Obraz przesłany pomyślnie");
       setImage(data.secure_url);
     } catch (err) {
       toast.error(getError(err));
