@@ -53,13 +53,13 @@ export default function ProductEditScreen() {
       error: "",
     });
 
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState("");
-  const [year, setYear] = useState("");
+  const [yearOfPublication, setYear] = useState("");
   const [description, setDescription] = useState("");
 
   useEffect(() => {
@@ -67,13 +67,13 @@ export default function ProductEditScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(`/api/products/${productId}`);
-        setName(data.name);
+        setTitle(data.title);
         setSlug(data.slug);
         setPrice(data.price);
         setImage(data.image);
         setCategory(data.category);
         setCountInStock(data.countInStock);
-        setYear(data.year);
+        setYear(data.yearOfPublication);
         setDescription(data.description);
         dispatch({ type: "FETCH_SUCCESS" });
       } catch (err) {
@@ -94,12 +94,12 @@ export default function ProductEditScreen() {
         `/api/products/${productId}`,
         {
           _id: productId,
-          name,
+          title,
           slug,
           price,
           image,
           category,
-          year,
+          yearOfPublication,
           countInStock,
           description,
         },
@@ -152,10 +152,10 @@ export default function ProductEditScreen() {
       ) : (
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="name">
-            <Form.Label>Nazwa</Form.Label>
+            <Form.Label>N</Form.Label>
             <Form.Control
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               required
             />
           </Form.Group>
@@ -200,7 +200,7 @@ export default function ProductEditScreen() {
           <Form.Group className="mb-3" controlId="brand">
             <Form.Label>Rok wydania</Form.Label>
             <Form.Control
-              value={year}
+              value={yearOfPublication}
               onChange={(e) => setYear(e.target.value)}
               required
             />
