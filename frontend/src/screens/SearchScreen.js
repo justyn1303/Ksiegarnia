@@ -217,8 +217,8 @@ export default function SearchScreen() {
                     {countProducts === 0 ? "No" : countProducts} wynik
                     {query !== "all" && " : " + query}
                     {category !== "all" && " : " + category}
-                    {price !== "all" && " : Price " + price}
-                    {rating !== "all" && " : Rating " + rating + " & up"}
+                    {price !== "all" && " : Cena " + price}
+                    {rating !== "all" && " : Ocena " + rating + " i wyżej"}
                     {query !== "all" ||
                     category !== "all" ||
                     rating !== "all" ||
