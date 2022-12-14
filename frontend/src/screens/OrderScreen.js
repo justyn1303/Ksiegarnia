@@ -203,7 +203,8 @@ export default function OrderScreen() {
             <Card.Body>
               <Card.Title>Zamówienie</Card.Title>
               <Card.Text>
-                <strong>Imię i nazwisko:</strong> {order.shippingAddress.fullName} <br />
+                <strong>Imię i nazwisko:</strong>{" "}
+                {order.shippingAddress.fullName} <br />
                 <strong>Adres: </strong> {order.shippingAddress.address},
                 {order.shippingAddress.city}, {order.shippingAddress.postalCode}
                 ,{order.shippingAddress.country}
@@ -224,9 +225,7 @@ export default function OrderScreen() {
                 <strong>Metoda:</strong> {order.paymentMethod}
               </Card.Text>
               {order.isPaid ? (
-                <MessageBox variant="success">
-                  Paid at {order.paidAt}
-                </MessageBox>
+                <MessageBox variant="success">Zapłąć {order.paidAt}</MessageBox>
               ) : (
                 <MessageBox variant="danger">Nie Zapłacono</MessageBox>
               )}

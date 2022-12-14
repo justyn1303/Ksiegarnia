@@ -69,7 +69,7 @@ export default function OrderHistoryScreen() {
               <th>TOTAL</th>
               <th>PŁATNOŚĆ</th>
               <th>DOSTARCZONY</th>
-              <th>CZYNNOŚĆ</th>
+              <th>AKCJA</th>
             </tr>
           </thead>
           <tbody>
