@@ -42,9 +42,11 @@ productRouter.put(
     if (product) {
       product.title = req.body.title;
       product.slug = req.body.slug;
+      product.author = req.body.author;
       product.price = req.body.price;
       product.image = req.body.image;
       product.category = req.body.category;
+      product.brand = req.body.brand;
       product.yearOfPublication = req.body.yearOfPublication;
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
