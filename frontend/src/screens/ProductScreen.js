@@ -77,7 +77,7 @@ function ProductScreen() {
           <img
             className="img-large"
             src={product.image}
-            alt={product.name}
+            alt={product.title}
           ></img>
         </Col>
         <Col md={3}>
@@ -108,7 +108,7 @@ function ProductScreen() {
                 <ListGroup.Item>
                   <Row>
                     <Col>Cena:</Col>
-                    <Col>PLN{product.price}</Col>
+                    <Col>{product.price}PLN</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
