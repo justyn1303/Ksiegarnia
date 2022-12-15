@@ -53,13 +53,15 @@ export default function ProductEditScreen() {
       error: "",
     });
 
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
+  const [author, setAuthor] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
+  const [brand, setBrand] = useState("");
   const [countInStock, setCountInStock] = useState("");
-  const [year, setYear] = useState("");
+  const [yearOfPublication, setYear] = useState("");
   const [description, setDescription] = useState("");
 
   useEffect(() => {
@@ -67,13 +69,15 @@ export default function ProductEditScreen() {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(`/api/products/${productId}`);
-        setName(data.name);
+        setTitle(data.title);
         setSlug(data.slug);
+        setAuthor(data.author);
         setPrice(data.price);
         setImage(data.image);
         setCategory(data.category);
+        setBrand(data.brand);
         setCountInStock(data.countInStock);
-        setYear(data.year);
+        setYear(data.yearOfPublication);
         setDescription(data.description);
         dispatch({ type: "FETCH_SUCCESS" });
       } catch (err) {
@@ -94,12 +98,14 @@ export default function ProductEditScreen() {
         `/api/products/${productId}`,
         {
           _id: productId,
-          name,
+          title,
           slug,
+          author,
           price,
           image,
           category,
-          year,
+          brand,
+          yearOfPublication,
           countInStock,
           description,
         },
@@ -141,7 +147,7 @@ export default function ProductEditScreen() {
   return (
     <Container className="small-container">
       <Helmet>
-        <title>Edytuj Produkt zł{productId}</title>
+        <title>Edytuj Produkt PLN{productId}</title>
       </Helmet>
       <h1>Edytuj Produkt {productId}</h1>
 
@@ -152,10 +158,10 @@ export default function ProductEditScreen() {
       ) : (
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="name">
-            <Form.Label>Nazwa</Form.Label>
+            <Form.Label>Tytuł</Form.Label>
             <Form.Control
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               required
             />
           </Form.Group>
@@ -167,7 +173,17 @@ export default function ProductEditScreen() {
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="name">
+
+          <Form.Group className="mb-3" controlId="author">
+            <Form.Label>Author</Form.Label>
+            <Form.Control
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="price">
             <Form.Label>Cena</Form.Label>
             <Form.Control
               value={price}
@@ -198,9 +214,17 @@ export default function ProductEditScreen() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="brand">
+            <Form.Label>Marka</Form.Label>
+            <Form.Control
+              value={brand}
+              onChange={(e) => setBrand(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="year">
             <Form.Label>Rok wydania</Form.Label>
             <Form.Control
-              value={year}
+              value={yearOfPublication}
               onChange={(e) => setYear(e.target.value)}
               required
             />

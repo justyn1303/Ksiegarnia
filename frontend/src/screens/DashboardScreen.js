@@ -109,7 +109,7 @@ export default function DashboardScreen() {
                 chartType="AreaChart"
                 loader={<div>Ładowanie wykresu...</div>}
                 data={[
-                  ["Date", "Sales"],
+                  ["Data", "Sprzedaż"],
                   ...summary.dailyOrders.map((x) => [x._id, x.sales]),
                 ]}
               ></Chart>
@@ -126,7 +126,7 @@ export default function DashboardScreen() {
                 chartType="PieChart"
                 loader={<div>Ładowanie wykresu...</div>}
                 data={[
-                  ["Category", "Products"],
+                  ["Kategoria", "Produkt"],
                   ...summary.productCategories.map((x) => [x._id, x.count]),
                 ]}
               ></Chart>
