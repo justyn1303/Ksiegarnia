@@ -225,7 +225,7 @@ export default function OrderScreen() {
                 <strong>Metoda:</strong> {order.paymentMethod}
               </Card.Text>
               {order.isPaid ? (
-                <MessageBox variant="success">Zapłać {order.paidAt}</MessageBox>
+                <MessageBox variant="success">Zapłąć {order.paidAt}</MessageBox>
               ) : (
                 <MessageBox variant="danger">Nie Zapłacono</MessageBox>
               )}
@@ -242,15 +242,15 @@ export default function OrderScreen() {
                       <Col md={6}>
                         <img
                           src={item.image}
-                          alt={item.title}
+                          alt={item.name}
                           className="img-fluid rounded img-thumbnail"
                         ></img>{" "}
-                        <Link to={`/product/${item.slug}`}>{item.title}</Link>
+                        <Link to={`/product/${item.slug}`}>{item.name}</Link>
                       </Col>
                       <Col md={3}>
                         <span>{item.quantity}</span>
                       </Col>
-                      <Col md={3}>{item.price}PLN</Col>
+                      <Col md={3}>${item.price}</Col>
                     </Row>
                   </ListGroup.Item>
                 ))}
@@ -266,19 +266,19 @@ export default function OrderScreen() {
                 <ListGroup.Item>
                   <Row>
                     <Col>Przedmioty</Col>
-                    <Col>{order.itemsPrice.toFixed(2)}PLN</Col>
+                    <Col>PLN{order.itemsPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Wysyłka</Col>
-                    <Col>{order.shippingPrice.toFixed(2)}PLN</Col>
+                    <Col>PLN{order.shippingPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Row>
                     <Col>Podatek</Col>
-                    <Col>{order.taxPrice.toFixed(2)}PLN</Col>
+                    <Col>PLN{order.taxPrice.toFixed(2)}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -287,7 +287,7 @@ export default function OrderScreen() {
                       <strong>Podsumowanie Zamówienia</strong>
                     </Col>
                     <Col>
-                      <strong>{order.totalPrice.toFixed(2)}PLN</strong>
+                      <strong>PLN{order.totalPrice.toFixed(2)}</strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>
