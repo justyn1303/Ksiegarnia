@@ -189,7 +189,7 @@ export default function SearchScreen() {
                     to={getFilterUrl({ rating: r.rating })}
                     className={`${r.rating}` === `${rating}` ? "text-bold" : ""}
                   >
-                    <Rating caption={" i wyżej"} rating={r.rating}></Rating>
+                    <Rating caption={" & up"} rating={r.rating}></Rating>
                   </Link>
                 </li>
               ))}
@@ -198,7 +198,7 @@ export default function SearchScreen() {
                   to={getFilterUrl({ rating: "all" })}
                   className={rating === "all" ? "text-bold" : ""}
                 >
-                  <Rating caption={" i wyżej"} rating={0}></Rating>
+                  <Rating caption={" & up"} rating={0}></Rating>
                 </Link>
               </li>
             </ul>
@@ -214,7 +214,7 @@ export default function SearchScreen() {
               <Row className="justify-content-between mb-3">
                 <Col md={6}>
                   <div>
-                    {countProducts === 0 ? "Liczba produktów" : countProducts} wynik
+                    {countProducts === 0 ? "No" : countProducts} wynik
                     {query !== "all" && " : " + query}
                     {category !== "all" && " : " + category}
                     {price !== "all" && " : Cena " + price}

@@ -19,11 +19,11 @@ const reducer = (state, action) => {
       return { ...state, loading: false };
     case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
-    case "UPDATE_REQUEST":
+    case "REQUEST_PENDING":
       return { ...state, loadingUpdate: true };
-    case "UPDATE_SUCCESS":
+    case "REQUEST_SUCCESS":
       return { ...state, loadingUpdate: false };
-    case "UPDATE_FAIL":
+    case "REQUEST_FAIL":
       return { ...state, loadingUpdate: false };
     case "UPLOAD_REQUEST":
       return { ...state, loadingUpload: true, errorUpload: "" };
@@ -40,16 +40,14 @@ const reducer = (state, action) => {
       return state;
   }
 };
-export default function ProductEditScreen() {
-  const navigate = useNavigate();
-  const params = useParams(); // /product/:id
-  const { id: productId } = params;
 
+export default function ProductAddScreen() {
+  const navigate = useNavigate();
   const { state } = useContext(Store);
   const { userInfo } = state;
-  const [{ loading, error, loadingUpdate, loadingUpload }, dispatch] =
+  const [{ loading, error, loadingUpdate: loadingCreate, loadingUpload }, dispatch] =
     useReducer(reducer, {
-      loading: true,
+      loading: false,
       error: "",
     });
 
@@ -67,43 +65,13 @@ export default function ProductEditScreen() {
   const [description, setDescription] = useState("");
   const [numReviews, setNumReviews] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`/api/products/${productId}`);
-        setAuthor(data.author);
-        setISBN(data.ISBN);
-        setTitle(data.title);
-        setSlug(data.slug);
-        setPrice(data.price);
-        setImage(data.image);
-        setCategory(data.category);
-        setCountInStock(data.countInStock);
-        setYear(data.yearOfPublication);
-        setDescription(data.description);
-        setBrand(data.brand);
-        setRating(data.rating);
-        setNumReviews(data.numReviews);
-        dispatch({ type: "FETCH_SUCCESS" });
-      } catch (err) {
-        dispatch({
-          type: "FETCH_FAIL",
-          payload: getError(err),
-        });
-      }
-    };
-    fetchData();
-  }, [productId]);
-
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      dispatch({ type: "UPDATE_REQUEST" });
-      await axios.put(
-        `/api/products/${productId}`,
+      dispatch({ type: "REQUEST_PENDING" });
+      await axios.post(
+        `/api/products/`,
         {
-          _id: productId,
           title,ISBN,
           slug,
           price,
@@ -118,13 +86,13 @@ export default function ProductEditScreen() {
         }
       );
       dispatch({
-        type: "UPDATE_SUCCESS",
+        type: "REQUEST_SUCCESS",
       });
       toast.success("Pomyślnie zaktualizowano produkt");
       navigate("/admin/products");
     } catch (err) {
       toast.error(getError(err));
-      dispatch({ type: "UPDATE_FAIL" });
+      dispatch({ type: "REQUEST_FAIL" });
     }
   };
   const uploadFileHandler = async (e) => {
@@ -151,9 +119,9 @@ export default function ProductEditScreen() {
   return (
     <Container className="small-container">
       <Helmet>
-        <title>Edytuj Produkt zł{productId}</title>
+        <title>Dodaj nowy produkt</title>
       </Helmet>
-      <h1>Edytuj Produkt {productId}</h1>
+      <h1>Dodaj nowy produkt</h1>
 
       {loading ? (
         <LoadingBox></LoadingBox>
@@ -172,9 +140,9 @@ export default function ProductEditScreen() {
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Tytuł</Form.Label>
             <Form.Control
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="name">
@@ -188,25 +156,25 @@ export default function ProductEditScreen() {
           <Form.Group className="mb-3" controlId="slug">
             <Form.Label>Slug</Form.Label>
             <Form.Control
-                value={slug}
-                onChange={(e) => setSlug(e.target.value)}
-                required
+              value={slug}
+              onChange={(e) => setSlug(e.target.value)}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="name">
             <Form.Label>Cena</Form.Label>
             <Form.Control
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                required
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="image">
             <Form.Label>Link do grafiki</Form.Label>
             <Form.Control
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-                required
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="imageFile">
@@ -218,33 +186,33 @@ export default function ProductEditScreen() {
           <Form.Group className="mb-3" controlId="category">
             <Form.Label>Kategoria</Form.Label>
             <Form.Control
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                required
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="brand">
             <Form.Label>Rok wydania</Form.Label>
             <Form.Control
-                value={yearOfPublication}
-                onChange={(e) => setYear(e.target.value)}
-                required
+              value={yearOfPublication}
+              onChange={(e) => setYear(e.target.value)}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="countInStock">
             <Form.Label>Ilość w magazynie</Form.Label>
             <Form.Control
-                value={countInStock}
-                onChange={(e) => setCountInStock(e.target.value)}
-                required
+              value={countInStock}
+              onChange={(e) => setCountInStock(e.target.value)}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Opis</Form.Label>
             <Form.Control
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="description">
@@ -271,11 +239,13 @@ export default function ProductEditScreen() {
                 required
             />
           </Form.Group>
+
+
           <div className="mb-3">
-            <Button disabled={loadingUpdate} type="submit">
-              Aktualizuj
+            <Button disabled={loadingCreate} type="submit">
+              Dodaj
             </Button>
-            {loadingUpdate && <LoadingBox></LoadingBox>}
+            {loadingCreate && <LoadingBox></LoadingBox>}
           </div>
         </Form>
       )}
