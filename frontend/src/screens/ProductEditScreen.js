@@ -53,32 +53,38 @@ export default function ProductEditScreen() {
       error: "",
     });
 
-  const [title, setTitle] = useState("");
-  const [slug, setSlug] = useState("");
+  const [ISBN, setISBN] = useState("");
   const [author, setAuthor] = useState("");
+  const [title, setTitle] = useState("");
+  const [brand, setBrand] = useState("");
+  const [rating, setRating] = useState("");
+  const [slug, setSlug] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
-  const [brand, setBrand] = useState("");
   const [countInStock, setCountInStock] = useState("");
   const [yearOfPublication, setYear] = useState("");
   const [description, setDescription] = useState("");
+  const [numReviews, setNumReviews] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
         const { data } = await axios.get(`/api/products/${productId}`);
+        setAuthor(data.author);
+        setISBN(data.ISBN);
         setTitle(data.title);
         setSlug(data.slug);
-        setAuthor(data.author);
         setPrice(data.price);
         setImage(data.image);
         setCategory(data.category);
-        setBrand(data.brand);
         setCountInStock(data.countInStock);
         setYear(data.yearOfPublication);
         setDescription(data.description);
+        setBrand(data.brand);
+        setRating(data.rating);
+        setNumReviews(data.numReviews);
         dispatch({ type: "FETCH_SUCCESS" });
       } catch (err) {
         dispatch({
@@ -98,16 +104,14 @@ export default function ProductEditScreen() {
         `/api/products/${productId}`,
         {
           _id: productId,
-          title,
+          title,ISBN,
           slug,
-          author,
           price,
           image,
           category,
-          brand,
           yearOfPublication,
           countInStock,
-          description,
+          description,rating, brand,numReviews,author
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -147,7 +151,7 @@ export default function ProductEditScreen() {
   return (
     <Container className="small-container">
       <Helmet>
-        <title>Edytuj Produkt PLN{productId}</title>
+        <title>Edytuj Produkt zł{productId}</title>
       </Helmet>
       <h1>Edytuj Produkt {productId}</h1>
 
@@ -158,45 +162,51 @@ export default function ProductEditScreen() {
       ) : (
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="name">
+            <Form.Label>Autor</Form.Label>
+            <Form.Control
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
+                required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="name">
             <Form.Label>Tytuł</Form.Label>
             <Form.Control
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="name">
+            <Form.Label>ISBN</Form.Label>
+            <Form.Control
+                value={ISBN}
+                onChange={(e) => setISBN(e.target.value)}
+                required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="slug">
             <Form.Label>Slug</Form.Label>
             <Form.Control
-              value={slug}
-              onChange={(e) => setSlug(e.target.value)}
-              required
+                value={slug}
+                onChange={(e) => setSlug(e.target.value)}
+                required
             />
           </Form.Group>
-
-          <Form.Group className="mb-3" controlId="author">
-            <Form.Label>Author</Form.Label>
-            <Form.Control
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
-              required
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="price">
+          <Form.Group className="mb-3" controlId="name">
             <Form.Label>Cena</Form.Label>
             <Form.Control
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
-              required
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="image">
-            <Form.Label>Grafika</Form.Label>
+            <Form.Label>Link do grafiki</Form.Label>
             <Form.Control
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-              required
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+                required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="imageFile">
@@ -208,41 +218,57 @@ export default function ProductEditScreen() {
           <Form.Group className="mb-3" controlId="category">
             <Form.Label>Kategoria</Form.Label>
             <Form.Control
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              required
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="brand">
-            <Form.Label>Marka</Form.Label>
-            <Form.Control
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="year">
             <Form.Label>Rok wydania</Form.Label>
             <Form.Control
-              value={yearOfPublication}
-              onChange={(e) => setYear(e.target.value)}
-              required
+                value={yearOfPublication}
+                onChange={(e) => setYear(e.target.value)}
+                required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="countInStock">
             <Form.Label>Ilość w magazynie</Form.Label>
             <Form.Control
-              value={countInStock}
-              onChange={(e) => setCountInStock(e.target.value)}
-              required
+                value={countInStock}
+                onChange={(e) => setCountInStock(e.target.value)}
+                required
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Opis</Form.Label>
             <Form.Control
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              required
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="description">
+            <Form.Label>Marka</Form.Label>
+            <Form.Control
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+                required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="description">
+            <Form.Label>Ocena</Form.Label>
+            <Form.Control
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+                required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="description">
+            <Form.Label>Liczba opinii</Form.Label>
+            <Form.Control
+                value={numReviews}
+                onChange={(e) => setNumReviews(e.target.value)}
+                required
             />
           </Form.Group>
           <div className="mb-3">

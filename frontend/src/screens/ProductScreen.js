@@ -13,6 +13,11 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { getError } from "../utils";
 import { Store } from "../Store";
+import imgGoldStar from "../images/GoldStar.png";
+import { useState } from "react";
+import "../App.css";
+
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -27,7 +32,18 @@ const reducer = (state, action) => {
   }
 };
 
+
+
 function ProductScreen() {
+
+  const [showInfoBook, setShowInfoBook] = useState(false);
+const [showInfoMark, setShowInfoMark] = useState(false);
+const [radio, setRadio] = useState('');
+const [comments, setComments] = useState([]);
+const [termComment, setTermComment] = useState('');
+
+
+
   const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
@@ -39,18 +55,28 @@ function ProductScreen() {
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
+      let book;
       try {
-        const result = await axios.get(`/api/products/slug/${slug}`);
-        dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+        book = (await axios.get(`/api/products/slug/${slug}`))?.data;
+        dispatch({ type: "FETCH_SUCCESS", payload: book });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
+      if(!book){
+        return
+      }
+      try {
+        const comments = (await axios.get(`/api/comments/${book._id}`))?.data;
+        setComments(comments)
+      } catch (err) {
+      }
+
     };
     fetchData();
   }, [slug]);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart } = state;
+  const { cart,userInfo } = state;
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -66,6 +92,41 @@ function ProductScreen() {
     navigate("/cart");
   };
 
+  const displayAlert = () => {
+    setShowInfoBook(false);
+    setRadio('');
+}
+
+const useRadio = (e) => {
+    setRadio(e.target.value);
+    console.log(e.target.value);
+}
+
+const markBook = () => {
+  if(radio === ''){
+    setShowInfoBook(false);
+  }else
+  setShowInfoBook(true);
+
+}
+
+const updateTermComment = (e) => {
+  setTermComment(e.target.value);
+}
+
+const AddComment = async () => {
+
+  setTermComment('');
+  const result = await axios.post(`/api/comments/`,{ productId:product._id,comment: termComment },{
+    headers: {
+      authorization: `Bearer ${userInfo.token}`,
+    },
+  });
+  if(result.status===201 && result?.data?.comments?.length){
+    setComments(result.data.comments)
+  }
+}
+
   return loading ? (
     <LoadingBox />
   ) : error ? (
@@ -77,7 +138,7 @@ function ProductScreen() {
           <img
             className="img-large"
             src={product.image}
-            alt={product.title}
+            alt={product.name}
           ></img>
         </Col>
         <Col md={3}>
@@ -108,7 +169,7 @@ function ProductScreen() {
                 <ListGroup.Item>
                   <Row>
                     <Col>Cena:</Col>
-                    <Col>{product.price}PLN</Col>
+                    <Col>PLN{product.price}</Col>
                   </Row>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -136,6 +197,20 @@ function ProductScreen() {
               </ListGroup>
             </Card.Body>
           </Card>
+        </Col>
+        <Col className="stars-col" md={3}>
+          {userInfo?._id &&<><textarea value={termComment} onChange={updateTermComment} className="form-control" placeholder="Wpisz swój komentarz"></textarea> <button className="btn btn-primary" onClick={AddComment}>Dodaj komentarz</button>
+          </>}
+                {comments.map((comment)=>{
+            return(
+                <div class="card bg-dark text-light">
+                    <div className="card-title">{comment?.user?.name ?? comment?.user?.email}    </div>
+                    <div class="card-body">
+                      {comment?.comment}
+                     </div>
+                </div>
+               )
+        })}
         </Col>
       </Row>
     </div>

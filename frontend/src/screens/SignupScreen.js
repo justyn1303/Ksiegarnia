@@ -24,10 +24,38 @@ export default function SignupScreen() {
   const { userInfo } = state;
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    const paswd=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]/;
+    function validateEmail(email) {
+      const res = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return res.test(String(email).toLowerCase());
+    }
+
+    if(validateEmail(email)){
+      console.log('ok')
+    }else{
+      toast.error('Podaj poprawny e-mail');
+      return;
+    }
+    if (password.length < 8) {
+      toast.error("Hasło musi posiadać minumum 8 znaków");
+      return;
+    }
+    if (password.length > 20) {
+      toast.error("Hasło musi posiadać maksymalnie 20 znaków");
+      return;
+    }
+    if(password.match(paswd)){
+      console.log('ok');
+    }else{
+      toast.error('Hasło musi posiadać 1 dużą literę, 1 cyfrę oraz 1 znak specjalny');
+      return;
+    }
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
       return;
     }
+   
     try {
       const { data } = await Axios.post("/api/users/signup", {
         name,

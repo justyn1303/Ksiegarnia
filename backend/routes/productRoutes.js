@@ -15,24 +15,24 @@ productRouter.post(
   isAuth,
   isAdmin,
   expressAsyncHandler(async (req, res) => {
-    const products = await Product.find();
-    const newProductId = products.length;
+      console.log(JSON.stringify(req.body))
     const newProduct = new Product({
-      id:newProductId,
-      title: req.body.title,
-      slug: req.body.slug,
-      author: req.body.author,
-      image: req.body.image,
-      price: req.body.price,
-      ISBN: req.body.ISBN,
-      category: req.body.category,
-      brand: req.body.brand,
-      yearOfPublication: req.body.yearOfPublication,
-      countInStock: 0,
-      rating: 0,
-      numReviews: 0,
-      description: req.body.description,
+        title :req.body.title,
+        slug :req.body.slug,
+        author:req.body.author,
+        price :req.body.price,
+        image :req.body.image,
+        category :req.body.category,
+        yearOfPublication :req.body.yearOfPublication,
+        countInStock :req.body.countInStock,
+        description :req.body.description,
+        brand: req.body.brand,
+        ISBN :req.body.ISBN,
+        rating:req.body.rating,
+        numReviews:req.body.numReviews
     });
+      console.log(newProduct)
+
     const product = await newProduct.save();
     res.send({ message: 'Product Created', product });
   })
@@ -46,17 +46,7 @@ productRouter.put(
     const productId = req.params.id;
     const product = await Product.findById(productId);
     if (product) {
-      product.title = req.body.title;
-      product.slug = req.body.slug;
-      product.author = req.body.author;
-      product.price = req.body.price;
-      product.image = req.body.image;
-      product.category = req.body.category;
-      product.brand = req.body.brand;
-      product.yearOfPublication = req.body.yearOfPublication;
-      product.countInStock = req.body.countInStock;
-      product.description = req.body.description;
-      await product.save();
+      await {...product,...req.body}.save();
       res.send({ message: 'Product Updated' });
     } else {
       res.status(404).send({ message: 'Product Not Found' });
@@ -118,7 +108,7 @@ productRouter.get(
     const queryFilter =
       searchQuery && searchQuery !== 'all'
         ? {
-            title: {
+            name: {
               $regex: searchQuery,
               $options: 'i',
             },
