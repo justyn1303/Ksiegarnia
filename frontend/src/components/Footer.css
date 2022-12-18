@@ -1,0 +1,28 @@
+#foot{
+    background-color: #212529;
+    font-size: medium;
+}
+.about-company{
+    color: white;
+    text-align: center;
+}
+p, h4{
+    color: white;
+}
+.location{
+    color: white;
+    text-align: right;
+}
+ul{
+    color: white;
+    list-style-type: none;
+}
+ul > li > a{
+    color: white;
+    text-decoration: none;
+}
+
+ul > li > a:hover{
+    color: rgb(128, 118, 118);
+    text-decoration: none;
+}

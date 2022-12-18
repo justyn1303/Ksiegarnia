@@ -33,6 +33,7 @@ import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
+import ProductAddScreen from "./screens/ProductAddScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -112,7 +113,7 @@ function App() {
                     </NavDropdown>
                   ) : (
                     <Link className="nav-link" to="/signin">
-                      Sign In
+                      Zaloguj
                     </Link>
                   )}
                   {userInfo && userInfo.isAdmin && (
@@ -229,6 +230,14 @@ function App() {
                     <ProductListScreen />
                   </AdminRoute>
                 }
+              ></Route>
+              <Route
+                  path="/admin/product/create"
+                  element={
+                  <AdminRoute>
+                    <ProductAddScreen />
+                  </AdminRoute>
+                  }
               ></Route>
               <Route
                 path="/admin/product/:id"

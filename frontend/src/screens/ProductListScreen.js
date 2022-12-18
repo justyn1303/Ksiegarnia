@@ -95,28 +95,6 @@ export default function ProductListScreen() {
     }
   }, [page, userInfo, successDelete]);
 
-  const createHandler = async () => {
-    if (window.confirm("Czy jesteś pewien, że chcesz utworzyć nowy produkt?")) {
-      try {
-        dispatch({ type: "CREATE_REQUEST" });
-        const { data } = await axios.post(
-          "/api/products",
-          {},
-          {
-            headers: { Authorization: `Bearer ${userInfo.token}` },
-          }
-        );
-        toast.success("produkt utworzono");
-        dispatch({ type: "CREATE_SUCCESS" });
-        navigate(`/admin/product/${data.product._id}`);
-      } catch (err) {
-        toast.error(getError(error));
-        dispatch({
-          type: "CREATE_FAIL",
-        });
-      }
-    }
-  };
 
   const deleteHandler = async (product) => {
     if (window.confirm("Czy jesteś pewien, że chcesz usunąć ten produkt?")) {
@@ -143,7 +121,7 @@ export default function ProductListScreen() {
         </Col>
         <Col className="col text-end">
           <div>
-            <Button type="button" onClick={createHandler}>
+            <Button type="button" onClick={() => navigate(`/admin/product/create`)}>
               Utwórz Produkt
             </Button>
           </div>
