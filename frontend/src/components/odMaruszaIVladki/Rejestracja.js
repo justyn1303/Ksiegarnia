@@ -20,6 +20,10 @@ const Rejestracja = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState({
+    mail:'',
+    password:''
+  })
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
@@ -27,6 +31,11 @@ const Rejestracja = () => {
     e.preventDefault();
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
+      return;
+    }
+    if (password.length < 7){
+      console.log('bład');
+      toast.error("Min 8 znaków");
       return;
     }
     try {
@@ -75,8 +84,9 @@ const Rejestracja = () => {
         onChange={(e) => setEmail(e.target.value)}
       ></input>
       <div className="mb-3">
-        <Button type="submit">Sign Up</Button>
+        <Button onClick={submitHandler} type="submit">Sign Up</Button>
       </div>
+      <div className="mb-c alert alert-danger">{error.password}</div>
       <Footer />
     </div>
   );

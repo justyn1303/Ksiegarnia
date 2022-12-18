@@ -33,8 +33,7 @@ import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
-import Footer from "./components/Footer";
-
+import ProductAddScreen from "./screens/ProductAddScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -233,6 +232,14 @@ function App() {
                 }
               ></Route>
               <Route
+                  path="/admin/product/create"
+                  element={
+                  <AdminRoute>
+                    <ProductAddScreen />
+                  </AdminRoute>
+                  }
+              ></Route>
+              <Route
                 path="/admin/product/:id"
                 element={
                   <AdminRoute>
@@ -252,11 +259,9 @@ function App() {
             </Routes>
           </Container>
         </main>
-        <Footer/>
-        {/* <footer>
-
+        <footer>
           <div className="text-center">All rights reserved</div>
-        </footer> */}
+        </footer>
       </div>
     </BrowserRouter>
   );

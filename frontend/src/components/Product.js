@@ -38,7 +38,7 @@ function Product(props) {
           <Card.Title>{product.title}</Card.Title>
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
-        <Card.Text>{product.price}PLN</Card.Text>
+        <Card.Text>PLN{product.price}</Card.Text>
         {product.countInStock === 0 ? (
           <Button variant="light" disabled>
             Brak na magazynie
