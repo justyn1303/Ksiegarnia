@@ -17,8 +17,6 @@ import imgGoldStar from "../images/GoldStar.png";
 import { useState } from "react";
 import "../App.css";
 
-
-
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -32,17 +30,12 @@ const reducer = (state, action) => {
   }
 };
 
-
-
 function ProductScreen() {
-
   const [showInfoBook, setShowInfoBook] = useState(false);
-const [showInfoMark, setShowInfoMark] = useState(false);
-const [radio, setRadio] = useState('');
-const [comments, setComments] = useState([]);
-const [termComment, setTermComment] = useState('');
-
-
+  const [showInfoMark, setShowInfoMark] = useState(false);
+  const [radio, setRadio] = useState("");
+  const [comments, setComments] = useState([]);
+  const [termComment, setTermComment] = useState("");
 
   const navigate = useNavigate();
   const params = useParams();
@@ -62,21 +55,19 @@ const [termComment, setTermComment] = useState('');
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
-      if(!book){
-        return
+      if (!book) {
+        return;
       }
       try {
         const comments = (await axios.get(`/api/comments/${book._id}`))?.data;
-        setComments(comments)
-      } catch (err) {
-      }
-
+        setComments(comments);
+      } catch (err) {}
     };
     fetchData();
   }, [slug]);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart,userInfo } = state;
+  const { cart, userInfo } = state;
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -94,38 +85,39 @@ const [termComment, setTermComment] = useState('');
 
   const displayAlert = () => {
     setShowInfoBook(false);
-    setRadio('');
-}
+    setRadio("");
+  };
 
-const useRadio = (e) => {
+  const useRadio = (e) => {
     setRadio(e.target.value);
     console.log(e.target.value);
-}
+  };
 
-const markBook = () => {
-  if(radio === ''){
-    setShowInfoBook(false);
-  }else
-  setShowInfoBook(true);
+  const markBook = () => {
+    if (radio === "") {
+      setShowInfoBook(false);
+    } else setShowInfoBook(true);
+  };
 
-}
+  const updateTermComment = (e) => {
+    setTermComment(e.target.value);
+  };
 
-const updateTermComment = (e) => {
-  setTermComment(e.target.value);
-}
-
-const AddComment = async () => {
-
-  setTermComment('');
-  const result = await axios.post(`/api/comments/`,{ productId:product._id,comment: termComment },{
-    headers: {
-      authorization: `Bearer ${userInfo.token}`,
-    },
-  });
-  if(result.status===201 && result?.data?.comments?.length){
-    setComments(result.data.comments)
-  }
-}
+  const AddComment = async () => {
+    setTermComment("");
+    const result = await axios.post(
+      `/api/comments/`,
+      { productId: product._id, comment: termComment },
+      {
+        headers: {
+          authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+    );
+    if (result.status === 201 && result?.data?.comments?.length) {
+      setComments(result.data.comments);
+    }
+  };
 
   return loading ? (
     <LoadingBox />
@@ -199,18 +191,29 @@ const AddComment = async () => {
           </Card>
         </Col>
         <Col className="stars-col" md={3}>
-          {userInfo?._id &&<><textarea value={termComment} onChange={updateTermComment} className="form-control" placeholder="Wpisz swój komentarz"></textarea> <button className="btn btn-primary" onClick={AddComment}>Dodaj komentarz</button>
-          </>}
-                {comments.map((comment)=>{
-            return(
-                <div class="card bg-dark text-light">
-                    <div className="card-title">{comment?.user?.name ?? comment?.user?.email}    </div>
-                    <div class="card-body">
-                      {comment?.comment}
-                     </div>
+          {userInfo?._id && (
+            <>
+              <textarea
+                value={termComment}
+                onChange={updateTermComment}
+                className="form-control"
+                placeholder="Wpisz swój komentarz"
+              ></textarea>{" "}
+              <button className="btn btn-primary" onClick={AddComment}>
+                Dodaj komentarz
+              </button>
+            </>
+          )}
+          {comments.map((comment) => {
+            return (
+              <div class="card bg-dark text-light">
+                <div className="card-title">
+                  {comment?.user?.name ?? comment?.user?.email}{" "}
                 </div>
-               )
-        })}
+                <div class="card-body">{comment?.comment}</div>
+              </div>
+            );
+          })}
         </Col>
       </Row>
     </div>
