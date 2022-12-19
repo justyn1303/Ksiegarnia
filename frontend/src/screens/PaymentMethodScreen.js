@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import CheckoutSteps from "../components/CheckoutSteps";
@@ -60,6 +60,7 @@ export default function PaymentMethodScreen() {
           <div className="mb-3">
             <Button type="submit">Kontynuuj</Button>
           </div>
+          <Link to="/shipping">Wstecz</Link>
         </Form>
       </div>
     </div>
