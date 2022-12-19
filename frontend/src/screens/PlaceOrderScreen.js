@@ -182,6 +182,7 @@ export default function PlaceOrderScreen() {
                     >
                       Złóż Zamówienie
                     </Button>
+                    <Link className="text-center mt-3" to="/payment">Wstecz</Link>
                   </div>
                   {loading && <LoadingBox></LoadingBox>}
                 </ListGroup.Item>
