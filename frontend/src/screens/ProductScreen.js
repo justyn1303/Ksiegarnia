@@ -204,9 +204,9 @@ const AddComment = async () => {
                 {comments.map((comment)=>{
             return(
                 <div class="card bg-dark text-light">
-                    <div className="card-title">{comment?.user?.name ?? comment?.user?.email}    </div>
+                    <div className="card-title"><span>{comment?.user?.name ?? comment?.user?.email}</span> <hr></hr>   </div>
                     <div class="card-body">
-                      {comment?.comment}
+                      <p>"{comment?.comment}"</p>
                      </div>
                 </div>
                )
