@@ -108,7 +108,7 @@ productRouter.get(
     const queryFilter =
       searchQuery && searchQuery !== 'all'
         ? {
-            name: {
+            title: {
               $regex: searchQuery,
               $options: 'i',
             },
