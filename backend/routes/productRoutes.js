@@ -26,6 +26,7 @@ productRouter.post(
         yearOfPublication :req.body.yearOfPublication,
         countInStock :req.body.countInStock,
         description :req.body.description,
+        //descriptionToEncourage: req.body.descriptionToEncourage,
         brand: req.body.brand,
         ISBN :req.body.ISBN,
         rating:req.body.rating,
