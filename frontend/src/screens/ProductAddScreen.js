@@ -67,6 +67,80 @@ export default function ProductAddScreen() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    let regExpN = /^\d+$/;
+    let regExpW = /^[a-z]+$/i;
+    if(author.match(regExpW)){
+      console.log('ok');
+    }else{
+      toast.error('W polu autor są możliwe tylko litery');
+      return
+    }
+    if(title.match(regExpW)){
+      console.log('ok');
+    }else{
+      toast.error('W polu tytuł są możliwe tylko litery');
+      return
+    }
+    if(ISBN.match(regExpN)){
+      console.log('ok');
+    }else{
+      toast.error('W polu ISBN są możliwe tylko cyfry');
+      return
+    }
+    if(slug.match(regExpW)){
+      console.log('ok');
+    }else{
+      toast.error('W polu slug są możliwe tylko litery');
+      return
+    }
+    if(price.match(regExpN)){
+      console.log('ok');
+    }else{
+      toast.error('W polu cena są możliwe tylko cyfry');
+      return
+    }
+    if(category.match(regExpW)){
+      console.log('ok');
+    }else{
+      toast.error('W polu kategoria są możliwe tylko litery');
+      return
+    }
+    if(yearOfPublication.match(regExpN)){
+      console.log('ok');
+    }else{
+      toast.error('W polu rok wydania są możliwe tylko cyfry');
+      return
+    }
+    if(countInStock.match(regExpN)){
+      console.log('ok');
+    }else{
+      toast.error('W polu ilość w magazynie są możliwe tylko cyfry');
+      return
+    }
+    if(description.match(regExpW)){
+      console.log('ok');
+    }else{
+      toast.error('W polu opis są możliwe tylko litery');
+      return
+    }
+    if(brand.match(regExpW)){
+      console.log('ok');
+    }else{
+      toast.error('W polu marka są możliwe tylko litery');
+      return
+    }
+    if(rating.match(regExpN)){
+      console.log('ok');
+    }else{
+      toast.error('W polu autor są możliwe tylko cyfry');
+      return
+    }
+    if(numReviews.match(regExpN)){
+      console.log('ok');
+    }else{
+      toast.error('W polu liczba opinii są możliwe tylko cyfry');
+      return
+    }
     try {
       dispatch({ type: "REQUEST_PENDING" });
       await axios.post(

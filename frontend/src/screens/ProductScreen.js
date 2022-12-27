@@ -141,7 +141,7 @@ const AddComment = async () => {
             alt={product.name}
           ></img>
         </Col>
-        <Col md={3}>
+        <Col className="book-desc" md={3}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
@@ -211,6 +211,19 @@ const AddComment = async () => {
                 </div>
                )
         })}
+        </Col>
+        <Col md={3}>
+        <div className="stars"><h3>Twoja Ocena</h3>
+        <div className="stars-star">
+        <div className="star-1"> <label><input onChange={useRadio} id="first" name="first" value="first" type="radio" checked={radio === 'first' }/></label><img src={imgGoldStar}></img><span>1.0</span></div>
+        <div className="star-2"> <label><input onChange={useRadio} id="second" name="second" value="second" type="radio" checked={radio === 'second' }/></label><img src={imgGoldStar}></img><img src={imgGoldStar}></img><span>2.0</span></div>
+        <div className="star-3"> <label><input onChange={useRadio} id="third" name="third" value="third" type="radio" checked={radio === 'third' }/></label><img src={imgGoldStar}></img><img src={imgGoldStar}></img><img src={imgGoldStar}></img><span>3.0</span></div>
+        <div className="star-4"> <label><input onChange={useRadio} id="four" name="four" value="four" type="radio" checked={radio === 'four' }/></label><img src={imgGoldStar}></img><img src={imgGoldStar}></img><img src={imgGoldStar}></img><img src={imgGoldStar}></img><span>4.0</span></div>
+        <div className="star-5"> <label><input onChange={useRadio} id="five" name="five" value="five" type="radio" checked={radio === 'five' }/></label><img src={imgGoldStar}></img><img src={imgGoldStar}></img><img src={imgGoldStar}></img><img src={imgGoldStar}></img><img src={imgGoldStar}></img><span>5.0</span></div>
+        </div>
+        <button className="btn btn-primary" onClick={markBook}>Wyślij ocenę</button>
+        {showInfoBook === true ? <><div className="alert alert-success">Książka została oceniona</div><button className="btn btn-primary" onClick={displayAlert}>Ok</button></> : null}
+        </div>
         </Col>
       </Row>
     </div>
