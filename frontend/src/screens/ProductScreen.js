@@ -17,8 +17,6 @@ import imgGoldStar from "../images/GoldStar.png";
 import { useState } from "react";
 import "../App.css";
 
-
-
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -32,16 +30,15 @@ const reducer = (state, action) => {
   }
 };
 
-
-
 function ProductScreen() {
-
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart, userInfo } = state;
   const [showInfoBook, setShowInfoBook] = useState(false);
-const [showInfoMark, setShowInfoMark] = useState(false);
-const [radio, setRadio] = useState('');
-const [comments, setComments] = useState([]);
-const [termComment, setTermComment] = useState('');
-
+  const [showInfoMark, setShowInfoMark] = useState(false);
+  const [radio, setRadio] = useState("");
+  const [comments, setComments] = useState([]);
+  const [termComment, setTermComment] = useState("");
+  const [me, setMe] = useState(null)
 
 
   const navigate = useNavigate();
@@ -52,31 +49,43 @@ const [termComment, setTermComment] = useState('');
     loading: true,
     error: "",
   });
-  useEffect(() => {
-    const fetchData = async () => {
-      dispatch({ type: "FETCH_REQUEST" });
-      let book;
-      try {
-        book = (await axios.get(`/api/products/slug/${slug}`))?.data;
-        dispatch({ type: "FETCH_SUCCESS", payload: book });
-      } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-      }
-      if(!book){
-        return
-      }
-      try {
-        const comments = (await axios.get(`/api/comments/${book._id}`))?.data;
-        setComments(comments)
-      } catch (err) {
-      }
 
-    };
+  const fetchData = async () => {
+    dispatch({ type: "FETCH_REQUEST" });
+    let book;
+    try {
+      book = (await axios.get(`/api/products/slug/${slug}`))?.data;
+      dispatch({ type: "FETCH_SUCCESS", payload: book });
+    } catch (err) {
+      dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+    }
+    if (!book) {
+      return;
+    }
+    try {
+      const comments = (await axios.get(`/api/comments/${book._id}`))?.data;
+      setComments(comments);
+    } catch (err) {}
+    try {
+      const myRating = (
+        await axios.get(`/api/rating/me/${book._id}`, {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        })
+      )?.data;
+      if (myRating.rating) {
+        setRadio(myRating.rating.toString());
+      }
+    } catch (err) {}
+    try {
+      const me = (await axios.get(`/api/users/me`,{ headers: { Authorization: `Bearer ${userInfo.token}` } }))?.data;
+      setMe(me);
+    } catch (err) {}
+  };
+
+  useEffect(() => {
     fetchData();
   }, [slug]);
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart,userInfo } = state;
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -94,38 +103,71 @@ const [termComment, setTermComment] = useState('');
 
   const displayAlert = () => {
     setShowInfoBook(false);
-    setRadio('');
-}
+  };
 
-const useRadio = (e) => {
+  const useRadio = (e) => {
     setRadio(e.target.value);
     console.log(e.target.value);
-}
+  };
 
-const markBook = () => {
-  if(radio === ''){
-    setShowInfoBook(false);
-  }else
-  setShowInfoBook(true);
-
-}
-
-const updateTermComment = (e) => {
-  setTermComment(e.target.value);
-}
-
-const AddComment = async () => {
-
-  setTermComment('');
-  const result = await axios.post(`/api/comments/`,{ productId:product._id,comment: termComment },{
-    headers: {
-      authorization: `Bearer ${userInfo.token}`,
-    },
-  });
-  if(result.status===201 && result?.data?.comments?.length){
-    setComments(result.data.comments)
+  const RevertIsBlockedStatus = async (userId, currentIsBlocked) => {
+    const updatedUser = (
+        await axios.post(
+            `/api/users/block/`,
+            {
+              userId,
+              isBlocked: !currentIsBlocked,
+            },
+            { headers: { Authorization: `Bearer ${userInfo.token}` } }
+        )
+    )?.data;
+    if(updatedUser.isBlocked!==undefined){
+      try {
+        const comments = (await axios.get(`/api/comments/${product._id}`))?.data;
+        setComments(comments);
+      } catch (err) {}
+    }
   }
-}
+
+  const markBook = async () => {
+    if (radio === "") {
+      return setShowInfoBook(false);
+    }
+    const rating = (
+      await axios.post(
+        `/api/rating/`,
+        {
+          productId: product._id,
+          rating: radio,
+        },
+        { headers: { Authorization: `Bearer ${userInfo.token}` } }
+      )
+    )?.data;
+    if (rating) {
+      await fetchData();
+      setShowInfoBook(true);
+    }
+  };
+
+  const updateTermComment = (e) => {
+    setTermComment(e.target.value);
+  };
+
+  const AddComment = async () => {
+    setTermComment("");
+    const result = await axios.post(
+      `/api/comments/`,
+      { productId: product._id, comment: termComment },
+      {
+        headers: {
+          authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+    );
+    if (result.status === 201 && result?.data?.comments?.length) {
+      setComments(result.data.comments);
+    }
+  };
 
   return loading ? (
     <LoadingBox />
@@ -141,7 +183,7 @@ const AddComment = async () => {
             alt={product.name}
           ></img>
         </Col>
-        <Col md={3}>
+        <Col className="book-desc" md={3}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
@@ -199,21 +241,148 @@ const AddComment = async () => {
           </Card>
         </Col>
         <Col className="stars-col" md={3}>
-          {userInfo?._id &&<><textarea value={termComment} onChange={updateTermComment} className="form-control" placeholder="Wpisz swój komentarz"></textarea> <button className="btn btn-primary" onClick={AddComment}>Dodaj komentarz</button>
-          </>}
-                {comments.map((comment)=>{
-            return(
-                <div class="card bg-dark text-light">
-                    <div className="card-title"><span>{comment?.user?.name ?? comment?.user?.email}</span> <hr></hr>   </div>
-                    <div class="card-body">
-                      <p>"{comment?.comment}"</p>
-                     </div>
+          {userInfo?._id && !me?.isBlocked && !me?.isAdmin && (
+            <>
+              <textarea
+                value={termComment}
+                onChange={updateTermComment}
+                className="form-control"
+                placeholder="Wpisz swój komentarz"
+              ></textarea>
+              <button className="btn btn-primary" onClick={AddComment}>
+                Dodaj komentarz
+              </button>
+            </>
+          )}
+          {me?.isBlocked && <div style={{color:'red'}}>Zostałeś zablokowany</div>}
+          {comments.map((comment) => {
+            return (
+              <div class="card bg-dark text-light">
+                <div className="card-title">
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <div>
+                      <span>{comment?.user?.name ?? comment?.user?.email}</span>
+                    </div>
+                    <div style={{ marginRight: 15, cursor:'pointer' }} onClick={()=>RevertIsBlockedStatus(comment?.user?._id, !!comment?.user?.isBlocked)}>{comment?.user?.isBlocked? "unblock":"block"}</div>
+                  </div>
+                  <hr></hr>
                 </div>
-               )
-        })}
+                <div class="card-body">
+                  <p>"{comment?.comment}"</p>
+                </div>
+              </div>
+            );
+          })}
         </Col>
+        <>
+          {userInfo?._id && !me?.isAdmin && (
+            <Col md={3}>
+              <div className="stars">
+                <h3>Twoja Ocena</h3>
+                <div className="stars-star">
+                  <div className="star-1">
+                    <label>
+                      <input
+                        onChange={useRadio}
+                        id="first"
+                        name="first"
+                        value="1"
+                        type="radio"
+                        checked={radio === "1"}
+                      />
+                    </label>
+                    <img src={imgGoldStar}></img>
+                    <span>1.0</span>
+                  </div>
+                  <div className="star-2">
+                    <label>
+                      <input
+                        onChange={useRadio}
+                        id="second"
+                        name="second"
+                        value="2"
+                        type="radio"
+                        checked={radio === "2"}
+                      />
+                    </label>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <span>2.0</span>
+                  </div>
+                  <div className="star-3">
+                    <label>
+                      <input
+                        onChange={useRadio}
+                        id="third"
+                        name="third"
+                        value="3"
+                        type="radio"
+                        checked={radio === "3"}
+                      />
+                    </label>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <span>3.0</span>
+                  </div>
+                  <div className="star-4">
+                    <label>
+                      <input
+                        onChange={useRadio}
+                        id="four"
+                        name="four"
+                        value="4"
+                        type="radio"
+                        checked={radio === "4"}
+                      />
+                    </label>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <span>4.0</span>
+                  </div>
+                  <div className="star-5">
+                    <label>
+                      <input
+                        onChange={useRadio}
+                        id="five"
+                        name="five"
+                        value="5"
+                        type="radio"
+                        checked={radio === "5"}
+                      />
+                    </label>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <span>5.0</span>
+                  </div>
+                </div>
+                <button className="btn btn-primary" onClick={markBook}>
+                  Wyślij ocenę
+                </button>
+                {showInfoBook === true ? (
+                  <>
+                    <div className="alert alert-success">
+                      Książka została oceniona
+                    </div>
+                    <button className="btn btn-primary" onClick={displayAlert}>
+                      Ok
+                    </button>
+                  </>
+                ) : null}
+              </div>
+            </Col>
+          )}
+        </>
       </Row>
     </div>
   );
 }
+
 export default ProductScreen;

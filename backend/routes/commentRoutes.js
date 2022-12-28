@@ -8,7 +8,7 @@ const commentRouter = express.Router();
 commentRouter.get(
   "/:productId",
   expressAsyncHandler(async (req, res) => {
-    const comments = await Comment.find({product:req.params.productId}).populate("user",['email','name']).sort({createdAt:-1});
+    const comments = await Comment.find({product:req.params.productId}).populate("user",['email','name','isBlocked']).sort({createdAt:-1});
     res.send(comments);
   })
 );
@@ -17,13 +17,17 @@ commentRouter.post(
   "/",
   isAuth,
   expressAsyncHandler(async (req, res) => {
+
+      if(req.user?.isBlocked){
+          throw new Error('You have been blocked')
+      }
     const newComment = new Comment({
       user: req.user._id,
       product: req.body.productId,
       comment: req.body.comment,
     });
     await newComment.save();
-    const comments = await Comment.find({product:req.body.productId}).populate("user",['email','name']).sort({createdAt:-1});
+    const comments = await Comment.find({product:req.body.productId}).populate("user",['email','name','isBlocked']).sort({createdAt:-1});
     res.status(201).send({ message: "New Comment Created", comments });
   })
 );
