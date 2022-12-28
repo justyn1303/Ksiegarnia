@@ -49,11 +49,12 @@ productRouter.post(
       yearOfPublication: req.body.yearOfPublication,
       countInStock: req.body.countInStock,
       description: req.body.description,
+      //descriptionToEncourage: req.body.descriptionToEncourage,
       brand: req.body.brand,
       ISBN: req.body.ISBN,
       rating: req.body.rating,
       numReviews: req.body.numReviews,
-    });
+ });
 
     const product = await newProduct.save();
     res.send({ message: "Product Created", product });
@@ -130,7 +131,7 @@ productRouter.get(
     const queryFilter =
       searchQuery && searchQuery !== "all"
         ? {
-            name: {
+            title: {
               $regex: searchQuery,
               $options: "i",
             },
