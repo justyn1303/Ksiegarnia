@@ -236,7 +236,7 @@ export default function ProductAddScreen() {
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="name">
-            <Form.Label>Cena</Form.Label>
+            <Form.Label>Cena(zł)</Form.Label>
             <Form.Control
               value={price}
               onChange={(e) => setPrice(e.target.value)}
