@@ -689,3 +689,22 @@
 .star-1 {
     margin-left: -154px;
 }
+
+.product {
+    margin-right: 10px;
+}
+
+.products {
+    width: 95vw;
+    margin-left: -200px;
+}
+
+.rating {
+    transform: translateY(30px);
+}
+
+.pr {
+    border: 2px solid red;
+    min-height: 500px;
+    width: 400px;
+}
