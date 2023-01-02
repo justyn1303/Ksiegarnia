@@ -7,6 +7,14 @@ import { isAuth, isAdmin, generateToken } from "../utils.js";
 const userRouter = express.Router();
 
 userRouter.get(
+    "/me",
+    isAuth,
+    expressAsyncHandler(async (req, res) => {
+        res.status(200).send({...req.user?._doc});
+    })
+);
+
+userRouter.get(
   "/",
   isAuth,
   isAdmin,
@@ -37,6 +45,12 @@ userRouter.put(
     const user = await User.findById(req.user._id);
     if (user) {
       user.name = req.body.name || user.name;
+      if (req.body.email) {
+        const _user = await User.findOne({ email: req.body.email });
+        if (_user && _user._id !== req.user._id) {
+          throw new Error("this email is already in use");
+        }
+      }
       user.email = req.body.email || user.email;
       if (req.body.password) {
         user.password = bcrypt.hashSync(req.body.password, 8);
@@ -115,6 +129,10 @@ userRouter.post(
 userRouter.post(
   "/signup",
   expressAsyncHandler(async (req, res) => {
+    const _user = await User.findOne({ email: req.body.email });
+    if (_user) {
+      throw new Error("this email is already in use");
+    }
     const newUser = new User({
       name: req.body.name,
       email: req.body.email,
@@ -128,6 +146,23 @@ userRouter.post(
       isAdmin: user.isAdmin,
       token: generateToken(user),
     });
+  })
+);
+
+userRouter.post(
+  "/block",
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.body.userId);
+    if (!user) {
+      return res.status(400).send({ message: "user not found" });
+    }
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: req.body.userId },
+      { isBlocked: !!req.body.isBlocked }
+    );
+    return res.status(200).send({isBlocked: updatedUser.isBlocked})
   })
 );
 

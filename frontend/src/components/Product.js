@@ -5,6 +5,7 @@ import Rating from "./Rating";
 import axios from "axios";
 import { useContext } from "react";
 import { Store } from "../Store";
+import '../App.css';
 
 function Product(props) {
   const { product } = props;
@@ -29,7 +30,7 @@ function Product(props) {
   };
 
   return (
-    <Card>
+    <Card className="pr" mr={6}>
       <Link to={`/product/${product.slug}`}>
         <img src={product.image} className="card-img-top" alt={product.title} />
       </Link>

@@ -1,3 +1,5 @@
+import '../App.css'
+
 function Rating(props) {
   const { rating, numReviews, caption } = props;
   return (
