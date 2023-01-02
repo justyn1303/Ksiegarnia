@@ -708,3 +708,15 @@
     min-height: 500px;
     width: 220px;
 }
+
+.pwd-container{
+    position: relative;
+}
+
+.pwd-container img {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    right: 8px;
+    top: 42px;
+  }
