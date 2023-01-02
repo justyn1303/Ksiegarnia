@@ -5,6 +5,7 @@ import Rating from "./Rating";
 import axios from "axios";
 import { useContext } from "react";
 import { Store } from "../Store";
+import '../App.css';
 
 function Product(props) {
   const { product } = props;
@@ -29,7 +30,7 @@ function Product(props) {
   };
 
   return (
-    <Card>
+    <Card className="pr" mr={6}>
       <Link to={`/product/${product.slug}`}>
         <img src={product.image} className="card-img-top" alt={product.title} />
       </Link>
@@ -38,7 +39,7 @@ function Product(props) {
           <Card.Title>{product.title}</Card.Title>
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
-        <Card.Text>PLN {product.price}</Card.Text>
+        <Card.Text>PLN{product.price}</Card.Text>
         {product.countInStock === 0 ? (
           <Button variant="light" disabled>
             Brak na magazynie

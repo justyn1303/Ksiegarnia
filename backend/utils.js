@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import User from "./models/userModel.js";
 
 export const generateToken = (user) => {
   return jwt.sign(
@@ -15,15 +16,15 @@ export const generateToken = (user) => {
   );
 };
 
-export const isAuth = (req, res, next) => {
+export const isAuth = async (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
     const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
-    jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
+    await jwt.verify(token, process.env.JWT_SECRET, async (err, decode) => {
       if (err) {
-        res.status(401).send({ message: 'Invalid Token' });
+        res.status(401).send({message: 'Invalid Token'});
       } else {
-        req.user = decode;
+        req.user = await User.findOne({_id:decode._id});
         next();
       }
     });
