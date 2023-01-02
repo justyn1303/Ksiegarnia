@@ -8,6 +8,7 @@ import userRouter from "./routes/userRoutes.js";
 import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
 import commentRouter from "./routes/commentRoutes.js";
+import ratingRouter from "./routes/ratingRoutes.js";
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/comments', commentRouter);
+app.use('/api/rating', ratingRouter);
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });

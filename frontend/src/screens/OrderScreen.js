@@ -289,6 +289,7 @@ export default function OrderScreen() {
                     <Col>
                       <strong>PLN{order.totalPrice.toFixed(2)}</strong>
                     </Col>
+                    <Link to="/placeorder">Wstecz</Link>
                   </Row>
                 </ListGroup.Item>
                 {/* {!order.isPaid && (

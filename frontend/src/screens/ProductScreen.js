@@ -31,11 +31,21 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
+<<<<<<< HEAD
+=======
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart, userInfo } = state;
+>>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
   const [showInfoBook, setShowInfoBook] = useState(false);
   const [showInfoMark, setShowInfoMark] = useState(false);
   const [radio, setRadio] = useState("");
   const [comments, setComments] = useState([]);
   const [termComment, setTermComment] = useState("");
+<<<<<<< HEAD
+=======
+  const [me, setMe] = useState(null)
+
+>>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
 
   const navigate = useNavigate();
   const params = useParams();
@@ -45,6 +55,7 @@ function ProductScreen() {
     loading: true,
     error: "",
   });
+<<<<<<< HEAD
   useEffect(() => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
@@ -68,6 +79,45 @@ function ProductScreen() {
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
+=======
+
+  const fetchData = async () => {
+    dispatch({ type: "FETCH_REQUEST" });
+    let book;
+    try {
+      book = (await axios.get(`/api/products/slug/${slug}`))?.data;
+      dispatch({ type: "FETCH_SUCCESS", payload: book });
+    } catch (err) {
+      dispatch({ type: "FETCH_FAIL", payload: getError(err) });
+    }
+    if (!book) {
+      return;
+    }
+    try {
+      const comments = (await axios.get(`/api/comments/${book._id}`))?.data;
+      setComments(comments);
+    } catch (err) {}
+    try {
+      const myRating = (
+        await axios.get(`/api/rating/me/${book._id}`, {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        })
+      )?.data;
+      if (myRating.rating) {
+        setRadio(myRating.rating.toString());
+      }
+    } catch (err) {}
+    try {
+      const me = (await axios.get(`/api/users/me`,{ headers: { Authorization: `Bearer ${userInfo.token}` } }))?.data;
+      setMe(me);
+    } catch (err) {}
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [slug]);
+
+>>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -85,7 +135,10 @@ function ProductScreen() {
 
   const displayAlert = () => {
     setShowInfoBook(false);
+<<<<<<< HEAD
     setRadio("");
+=======
+>>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
   };
 
   const useRadio = (e) => {
@@ -93,10 +146,50 @@ function ProductScreen() {
     console.log(e.target.value);
   };
 
+<<<<<<< HEAD
   const markBook = () => {
     if (radio === "") {
       setShowInfoBook(false);
     } else setShowInfoBook(true);
+=======
+  const RevertIsBlockedStatus = async (userId, currentIsBlocked) => {
+    const updatedUser = (
+        await axios.post(
+            `/api/users/block/`,
+            {
+              userId,
+              isBlocked: !currentIsBlocked,
+            },
+            { headers: { Authorization: `Bearer ${userInfo.token}` } }
+        )
+    )?.data;
+    if(updatedUser.isBlocked!==undefined){
+      try {
+        const comments = (await axios.get(`/api/comments/${product._id}`))?.data;
+        setComments(comments);
+      } catch (err) {}
+    }
+  }
+
+  const markBook = async () => {
+    if (radio === "") {
+      return setShowInfoBook(false);
+    }
+    const rating = (
+      await axios.post(
+        `/api/rating/`,
+        {
+          productId: product._id,
+          rating: radio,
+        },
+        { headers: { Authorization: `Bearer ${userInfo.token}` } }
+      )
+    )?.data;
+    if (rating) {
+      await fetchData();
+      setShowInfoBook(true);
+    }
+>>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
   };
 
   const updateTermComment = (e) => {
@@ -133,7 +226,7 @@ function ProductScreen() {
             alt={product.name}
           ></img>
         </Col>
-        <Col md={3}>
+        <Col className="book-desc" md={3}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
@@ -191,32 +284,165 @@ function ProductScreen() {
           </Card>
         </Col>
         <Col className="stars-col" md={3}>
+<<<<<<< HEAD
           {userInfo?._id && (
+=======
+          {userInfo?._id && !me?.isBlocked && !me?.isAdmin && (
+>>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
             <>
               <textarea
                 value={termComment}
                 onChange={updateTermComment}
                 className="form-control"
                 placeholder="Wpisz swój komentarz"
+<<<<<<< HEAD
               ></textarea>{" "}
+=======
+              ></textarea>
+>>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
               <button className="btn btn-primary" onClick={AddComment}>
                 Dodaj komentarz
               </button>
             </>
           )}
+<<<<<<< HEAD
+=======
+          {me?.isBlocked && <div style={{color:'red'}}>Zostałeś zablokowany</div>}
+>>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
           {comments.map((comment) => {
             return (
               <div class="card bg-dark text-light">
                 <div className="card-title">
+<<<<<<< HEAD
                   {comment?.user?.name ?? comment?.user?.email}{" "}
                 </div>
                 <div class="card-body">{comment?.comment}</div>
+=======
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <div>
+                      <span>{comment?.user?.name ?? comment?.user?.email}</span>
+                    </div>
+                    <div style={{ marginRight: 15, cursor:'pointer' }} onClick={()=>RevertIsBlockedStatus(comment?.user?._id, !!comment?.user?.isBlocked)}>{comment?.user?.isBlocked? "unblock":"block"}</div>
+                  </div>
+                  <hr></hr>
+                </div>
+                <div class="card-body">
+                  <p>"{comment?.comment}"</p>
+                </div>
+>>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
               </div>
             );
           })}
         </Col>
+        <>
+          {userInfo?._id && !me?.isAdmin && (
+            <Col md={3}>
+              <div className="stars">
+                <h3>Twoja Ocena</h3>
+                <div className="stars-star">
+                  <div className="star-1">
+                    <label>
+                      <input
+                        onChange={useRadio}
+                        id="first"
+                        name="first"
+                        value="1"
+                        type="radio"
+                        checked={radio === "1"}
+                      />
+                    </label>
+                    <img src={imgGoldStar}></img>
+                    <span>1.0</span>
+                  </div>
+                  <div className="star-2">
+                    <label>
+                      <input
+                        onChange={useRadio}
+                        id="second"
+                        name="second"
+                        value="2"
+                        type="radio"
+                        checked={radio === "2"}
+                      />
+                    </label>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <span>2.0</span>
+                  </div>
+                  <div className="star-3">
+                    <label>
+                      <input
+                        onChange={useRadio}
+                        id="third"
+                        name="third"
+                        value="3"
+                        type="radio"
+                        checked={radio === "3"}
+                      />
+                    </label>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <span>3.0</span>
+                  </div>
+                  <div className="star-4">
+                    <label>
+                      <input
+                        onChange={useRadio}
+                        id="four"
+                        name="four"
+                        value="4"
+                        type="radio"
+                        checked={radio === "4"}
+                      />
+                    </label>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <span>4.0</span>
+                  </div>
+                  <div className="star-5">
+                    <label>
+                      <input
+                        onChange={useRadio}
+                        id="five"
+                        name="five"
+                        value="5"
+                        type="radio"
+                        checked={radio === "5"}
+                      />
+                    </label>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <img src={imgGoldStar}></img>
+                    <span>5.0</span>
+                  </div>
+                </div>
+                <button className="btn btn-primary" onClick={markBook}>
+                  Wyślij ocenę
+                </button>
+                {showInfoBook === true ? (
+                  <>
+                    <div className="alert alert-success">
+                      Książka została oceniona
+                    </div>
+                    <button className="btn btn-primary" onClick={displayAlert}>
+                      Ok
+                    </button>
+                  </>
+                ) : null}
+              </div>
+            </Col>
+          )}
+        </>
       </Row>
     </div>
   );
 }
+
 export default ProductScreen;
