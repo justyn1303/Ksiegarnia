@@ -7,6 +7,9 @@ import { Store } from "../Store";
 import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function ShippingAddressScreen() {
+
+  const stateButton ={button:1};
+
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
@@ -31,23 +34,31 @@ export default function ShippingAddressScreen() {
       type: "SAVE_SHIPPING_ADDRESS",
       payload: {
         fullName,
-        address,
-        city,
-        postalCode,
         country,
+        city,
+        address,
+        postalCode,
+        
       },
     });
     localStorage.setItem(
       "shippingAddress",
       JSON.stringify({
         fullName,
-        address,
-        city,
-        postalCode,
         country,
+        city,
+        address,
+        postalCode,
+        
       })
     );
-    navigate("/payment");
+    if(stateButton.button === 1){
+      navigate("/payment");
+    }
+    if(stateButton.button === 2){
+      navigate("/");
+    }
+  
   };
   return (
     <div>
@@ -67,11 +78,11 @@ export default function ShippingAddressScreen() {
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="address">
-            <Form.Label>Adres</Form.Label>
+          <Form.Group className="mb-3" controlId="country">
+            <Form.Label>Kraj</Form.Label>
             <Form.Control
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
               required
             />
           </Form.Group>
@@ -83,6 +94,14 @@ export default function ShippingAddressScreen() {
               required
             />
           </Form.Group>
+          <Form.Group className="mb-3" controlId="address">
+            <Form.Label>Adres</Form.Label>
+            <Form.Control
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              required
+            />
+          </Form.Group>
           <Form.Group className="mb-3" controlId="postalCode">
             <Form.Label>Kod Pocztowy</Form.Label>
             <Form.Control
@@ -91,17 +110,14 @@ export default function ShippingAddressScreen() {
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="country">
-            <Form.Label>Kraj</Form.Label>
-            <Form.Control
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              required
-            />
-          </Form.Group>
-          <div className="mb-3">
-            <Button variant="primary" type="submit">
+          <div className="mb-3 d-grid gap-2 d-md-flex justify-content-md-start">
+            <Button onClick={()=>(stateButton.button = 1)}
+            variant="primary" type="submit" name="btn1">
               Kontynuuj
+            </Button>
+            <Button onClick={() => (stateButton.button = 2)}
+            variant="primary" type="submit" name="btn2">
+              Powrót do głównej strony
             </Button>
           </div>
         </Form>
