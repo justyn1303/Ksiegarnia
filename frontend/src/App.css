@@ -695,8 +695,8 @@
 }
 
 .products {
-    width: 95vw;
-    margin-left: -200px;
+    width: 100%;
+    margin-left: 4%;
 }
 
 .rating {
@@ -706,5 +706,5 @@
 .pr {
     border: 2px solid red;
     min-height: 500px;
-    width: 400px;
+    width: 220px;
 }
