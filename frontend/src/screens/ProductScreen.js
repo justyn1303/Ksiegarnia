@@ -202,6 +202,10 @@ function ProductScreen() {
               Opis:
               <p>{product.description}</p>
             </ListGroup.Item>
+            <ListGroup.Item>
+              Opis zachęcający:
+              <p>{product.descriptionToEncourage}</p>
+            </ListGroup.Item>
           </ListGroup>
         </Col>
         <Col md={3}>
