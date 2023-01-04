@@ -69,7 +69,7 @@ export default function ProductAddScreen() {
   const submitHandler = async (e) => {
     e.preventDefault();
     let regExpN = /^\d+$/;
-    let regExpW = /^[a-z]+$/i;
+    let regExpW = /^[a-zA-Z]+$/i;
     if(author.match(regExpW)){
       console.log('ok');
     }else{
