@@ -54,6 +54,7 @@ function reducer(state, action) {
           cartItems: [],
           shippingAddress: {},
           paymentMethod: "",
+
         },
       };
     case "SAVE_SHIPPING_ADDRESS":

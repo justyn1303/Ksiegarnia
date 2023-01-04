@@ -49,7 +49,7 @@ productRouter.post(
       yearOfPublication: req.body.yearOfPublication,
       countInStock: req.body.countInStock,
       description: req.body.description,
-      //descriptionToEncourage: req.body.descriptionToEncourage,
+      descriptionToEncourage: req.body.descriptionToEncourage,
       brand: req.body.brand,
       ISBN: req.body.ISBN,
       rating: req.body.rating,
@@ -69,8 +69,17 @@ productRouter.put(
     const productId = req.params.id;
     const product = await Product.findById(productId);
     if (product) {
-      await { ...product, ...req.body }.save();
-      res.send({ message: "Product Updated" });
+      product.title = req.body.title;
+      product.slug = req.body.slug;
+      product.price = req.body.price;
+      product.image = req.body.image;
+      product.category = req.body.category;
+      product.yearOfPublication = req.body.yearOfPublication;
+      product.countInStock = req.body.countInStock;
+      product.description = req.body.description;
+      product.descriptionToEncourage = req.body.descriptionToEncourage;
+      await product.save();
+      res.send({ message: 'Product Updated' });
     } else {
       res.status(404).send({ message: "Product Not Found" });
     }
