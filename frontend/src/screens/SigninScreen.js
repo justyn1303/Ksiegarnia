@@ -8,6 +8,8 @@ import { useContext, useEffect, useState } from "react";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
+import showPwdImg from './show-password.svg';
+import hidePwdImg from './hide-password.svg';
 
 export default function SigninScreen() {
   const navigate = useNavigate();
@@ -17,6 +19,7 @@ export default function SigninScreen() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
@@ -57,12 +60,19 @@ export default function SigninScreen() {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
+        <div className="pwd-container">
           <Form.Label>Hasło</Form.Label>
           <Form.Control
-            type="password"
+            type={isRevealPwd ? "text" : "password"}
             required
             onChange={(e) => setPassword(e.target.value)}
           />
+          <img 
+          title={isRevealPwd ? "Hide password" : "Show password"}
+          src={isRevealPwd ? hidePwdImg : showPwdImg}
+          onClick={() => setIsRevealPwd(prevState => !prevState)}
+          />
+          </div>
         </Form.Group>
         <div className="mb-3">
           <Button type="submit">Zaloguj się</Button>

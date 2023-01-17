@@ -65,6 +65,7 @@ export default function ProductEditScreen() {
   const [countInStock, setCountInStock] = useState("");
   const [yearOfPublication, setYear] = useState("");
   const [description, setDescription] = useState("");
+  const [descriptionToEncourage, setDescriptionToEncourage] = useState("");
   const [numReviews, setNumReviews] = useState("");
 
   useEffect(() => {
@@ -82,6 +83,7 @@ export default function ProductEditScreen() {
         setCountInStock(data.countInStock);
         setYear(data.yearOfPublication);
         setDescription(data.description);
+        setDescriptionToEncourage(data.descriptionToEncourage);
         setBrand(data.brand);
         setRating(data.rating);
         setNumReviews(data.numReviews);
@@ -111,7 +113,8 @@ export default function ProductEditScreen() {
           category,
           yearOfPublication,
           countInStock,
-          description,rating, brand,numReviews,author
+          description, 
+          descriptionToEncourage, rating, brand,numReviews,author
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -244,6 +247,14 @@ export default function ProductEditScreen() {
             <Form.Control
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="descriptionToEncourage">
+            <Form.Label>Opis zachęcający</Form.Label>
+            <Form.Control
+                value={descriptionToEncourage}
+                onChange={(e) => setDescriptionToEncourage(e.target.value)}
                 required
             />
           </Form.Group>

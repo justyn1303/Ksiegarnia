@@ -8,6 +8,8 @@ import { useContext, useEffect, useState } from "react";
 import { Store } from "../Store";
 import { toast } from "react-toastify";
 import { getError } from "../utils";
+import showPwdImg from './show-password.svg';
+import hidePwdImg from './hide-password.svg';
 
 export default function SignupScreen() {
   const navigate = useNavigate();
@@ -18,8 +20,11 @@ export default function SignupScreen() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isRevealPwd, setIsRevealPwd] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isRevealConfirmPwd, setIsRevealConfirmPwd] = useState(false);
 
+  
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const submitHandler = async (e) => {
@@ -97,20 +102,35 @@ export default function SignupScreen() {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
+        <div className="pwd-container">
           <Form.Label>Hasło</Form.Label>
           <Form.Control
-            type="password"
-            required
+            type={isRevealPwd ? "text" : "password"}
+           required
             onChange={(e) => setPassword(e.target.value)}
           />
+          <img 
+          title={isRevealPwd ? "Hide password" : "Show password"}
+          src={isRevealPwd ? hidePwdImg : showPwdImg}
+          onClick={() => setIsRevealPwd(prevState => !prevState)}
+          />
+          </div>
           <Form.Group className="mb-3" controlId="confirmPassword">
+          <div className="pwd-container">
             <Form.Label>Potwierdź Hasło</Form.Label>
             <Form.Control
-              type="password"
+              type={isRevealConfirmPwd ? "text" : "password"}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
+            <img 
+            title={isRevealConfirmPwd ? "Hide password" : "Show password"}
+            src={isRevealConfirmPwd ? hidePwdImg : showPwdImg}
+            onClick={() =>  setIsRevealConfirmPwd(prevState => !prevState)}
+          />
+            </div>
           </Form.Group>
+          
         </Form.Group>
         <div className="mb-3">
           <Button type="submit">Zarejestruj się</Button>

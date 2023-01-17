@@ -63,12 +63,13 @@ export default function ProductAddScreen() {
   const [countInStock, setCountInStock] = useState("");
   const [yearOfPublication, setYear] = useState("");
   const [description, setDescription] = useState("");
+  const [descriptionToEncourage, setDescriptionToEncourage] = useState("");
   const [numReviews, setNumReviews] = useState("");
 
   const submitHandler = async (e) => {
     e.preventDefault();
     let regExpN = /^\d+$/;
-    let regExpW = /^[a-z]+$/i;
+    let regExpW = /^[a-zA-Z]+$/i;
     if(author.match(regExpW)){
       console.log('ok');
     }else{
@@ -123,6 +124,12 @@ export default function ProductAddScreen() {
       toast.error('W polu opis są możliwe tylko litery');
       return
     }
+    if(descriptionToEncourage.match(regExpW)){
+      console.log('ok');
+    }else{
+      toast.error('W polu opis zachęcający są możliwe tylko litery');
+      return
+    }
     if(brand.match(regExpW)){
       console.log('ok');
     }else{
@@ -153,7 +160,9 @@ export default function ProductAddScreen() {
           category,
           yearOfPublication,
           countInStock,
-          description,rating, brand,numReviews,author
+          description,
+          descriptionToEncourage,
+          rating, brand,numReviews,author
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -286,6 +295,14 @@ export default function ProductAddScreen() {
             <Form.Control
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="descriptionToEncourage">
+            <Form.Label>Opis zachęcający</Form.Label>
+            <Form.Control
+              value={descriptionToEncourage}
+              onChange={(e) => setDescriptionToEncourage(e.target.value)}
               required
             />
           </Form.Group>
