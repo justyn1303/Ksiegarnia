@@ -38,7 +38,7 @@ function Product(props) {
         <Link to={`/product/${product.slug}`}>
           <Card.Title>{product.title}</Card.Title>
         </Link>
-        <Rating rating={product.rating} numReviews={product.numReviews} />
+        <Rating className="rat" rating={product.rating} numReviews={product.numReviews} />
         <Card.Text>PLN{product.price}</Card.Text>
         {product.countInStock === 0 ? (
           <Button variant="light" disabled>

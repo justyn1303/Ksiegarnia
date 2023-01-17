@@ -31,21 +31,15 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
-<<<<<<< HEAD
-=======
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
->>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
   const [showInfoBook, setShowInfoBook] = useState(false);
   const [showInfoMark, setShowInfoMark] = useState(false);
   const [radio, setRadio] = useState("");
   const [comments, setComments] = useState([]);
   const [termComment, setTermComment] = useState("");
-<<<<<<< HEAD
-=======
   const [me, setMe] = useState(null)
 
->>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
 
   const navigate = useNavigate();
   const params = useParams();
@@ -55,31 +49,6 @@ function ProductScreen() {
     loading: true,
     error: "",
   });
-<<<<<<< HEAD
-  useEffect(() => {
-    const fetchData = async () => {
-      dispatch({ type: "FETCH_REQUEST" });
-      let book;
-      try {
-        book = (await axios.get(`/api/products/slug/${slug}`))?.data;
-        dispatch({ type: "FETCH_SUCCESS", payload: book });
-      } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: getError(err) });
-      }
-      if (!book) {
-        return;
-      }
-      try {
-        const comments = (await axios.get(`/api/comments/${book._id}`))?.data;
-        setComments(comments);
-      } catch (err) {}
-    };
-    fetchData();
-  }, [slug]);
-
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart, userInfo } = state;
-=======
 
   const fetchData = async () => {
     dispatch({ type: "FETCH_REQUEST" });
@@ -117,7 +86,6 @@ function ProductScreen() {
     fetchData();
   }, [slug]);
 
->>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -135,10 +103,6 @@ function ProductScreen() {
 
   const displayAlert = () => {
     setShowInfoBook(false);
-<<<<<<< HEAD
-    setRadio("");
-=======
->>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
   };
 
   const useRadio = (e) => {
@@ -146,12 +110,6 @@ function ProductScreen() {
     console.log(e.target.value);
   };
 
-<<<<<<< HEAD
-  const markBook = () => {
-    if (radio === "") {
-      setShowInfoBook(false);
-    } else setShowInfoBook(true);
-=======
   const RevertIsBlockedStatus = async (userId, currentIsBlocked) => {
     const updatedUser = (
         await axios.post(
@@ -189,7 +147,6 @@ function ProductScreen() {
       await fetchData();
       setShowInfoBook(true);
     }
->>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
   };
 
   const updateTermComment = (e) => {
@@ -288,40 +245,24 @@ function ProductScreen() {
           </Card>
         </Col>
         <Col className="stars-col" md={3}>
-<<<<<<< HEAD
-          {userInfo?._id && (
-=======
           {userInfo?._id && !me?.isBlocked && !me?.isAdmin && (
->>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
             <>
               <textarea
                 value={termComment}
                 onChange={updateTermComment}
                 className="form-control"
                 placeholder="Wpisz swój komentarz"
-<<<<<<< HEAD
-              ></textarea>{" "}
-=======
               ></textarea>
->>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
               <button className="btn btn-primary" onClick={AddComment}>
                 Dodaj komentarz
               </button>
             </>
           )}
-<<<<<<< HEAD
-=======
           {me?.isBlocked && <div style={{color:'red'}}>Zostałeś zablokowany</div>}
->>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
           {comments.map((comment) => {
             return (
               <div class="card bg-dark text-light">
                 <div className="card-title">
-<<<<<<< HEAD
-                  {comment?.user?.name ?? comment?.user?.email}{" "}
-                </div>
-                <div class="card-body">{comment?.comment}</div>
-=======
                   <div
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
@@ -335,7 +276,6 @@ function ProductScreen() {
                 <div class="card-body">
                   <p>"{comment?.comment}"</p>
                 </div>
->>>>>>> 3713fcc1f82cf2e4dfe10f71d41e72255089c728
               </div>
             );
           })}
