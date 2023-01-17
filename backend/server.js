@@ -1,6 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
-//import data from "./data.js";
+import path from 'path';
 import mongoose from "mongoose";
 import seedRouter from "./routes/seedRoutes.js";
 import productRouter from "./routes/productRoutes.js";
